@@ -1,5 +1,5 @@
 import React from 'react'
-import DefaultLayout from '../DefaultLayout'
+import DefaultLayout from '../../DefaultLayout'
 
 import {SlArrowRight} from 'react-icons/sl'
 import {FaTruckFast} from 'react-icons/fa6'

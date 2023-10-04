@@ -1,7 +1,12 @@
 import Image from 'next/image'
-import Homepage from '@/views/Homepage/Homepage'
+import Homepage from '@/views/pages/Homepage/Homepage'
+import CartProvider from '@/views/providers/CartProvider'
 
 export default function Home() {
-  return <Homepage/>
+  return (
+   <CartProvider>
+     <Homepage/>
+   </CartProvider>
+  )
   
 }
