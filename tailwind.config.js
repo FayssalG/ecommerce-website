@@ -4,9 +4,19 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/views/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
+      keyframes:{
+        fadeIn : {
+          '0%' : {transform : 'translateY(-9px)' , opacity:'0'},
+          '100%' : {transform : 'translateY(0)' , opacity:'1'}
+        }
+      },
+      animation:{
+        'fadeIn' : 'fadeIn 200ms linear forwards'
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

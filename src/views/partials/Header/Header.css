@@ -1,0 +1,23 @@
+
+/* IMPORTANT !!!!!! */
+/* This file is only used for pseudo elements as they are a pain to handle with tailwind */
+
+.fav-btn , .cart-btn{
+    position: relative;
+}
+.fav-btn::after , .cart-btn::after{
+    content: attr(data-items-num);
+    font-size: .5rem;
+    padding: .8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: red;
+}
