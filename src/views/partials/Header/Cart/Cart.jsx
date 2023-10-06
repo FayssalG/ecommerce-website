@@ -5,22 +5,24 @@ import React from 'react'
 import {BsCart3 , BsTrash} from 'react-icons/bs'
 
 
-import { useCartContext } from '../../../providers/CartProvider'
+import useCart from './useCart'
 
 export default function Cart() {
 
-  const { 
+  const {
+    cartBtnRef, 
     showCart,
-    handleToggleCart , 
+    handleToggleCart ,
+
     cartItems , 
     totalAmount , 
     dispatch
-  } = useCartContext()
+  } = useCart()
   
   
   return (
-    <div className='flex  gap-4 items-center'> 
-            <button onClick={handleToggleCart} className={cartItems.length>0 ? 'cart-btn': ''} data-items-num={cartItems.length}><BsCart3 size={30}/></button>
+    <div ref={cartBtnRef} className='flex  gap-4 items-center'> 
+            <button  onClick={handleToggleCart} className={cartItems.length>0 ? 'cart-btn': ''} data-items-num={cartItems.reduce((total,item)=>total+item.quantity , 0)}><BsCart3 size={30}/></button>
             <div className='&[p]:m-0 '>
               <p className='text-xs text-slate-400'>Total</p>
               <p className='font-bold'>$ {totalAmount}</p>
@@ -42,6 +44,7 @@ export default function Cart() {
                                 <div className='w-1/2'>
                                   <h2 className=' '>{item.title}</h2>                              
                                   <p className=' text-orange-500 font-bold'>${item.price}</p>
+                                  {/* Quantity */}
                                   <div className='mt-2'>
                                       <span className='text-sm text-slate-400'>Quantity : </span>
                                       <div className='shadow shadow-slate-200 rounded  py-1 mt-2 grid grid-cols-3 '>

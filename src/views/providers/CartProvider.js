@@ -15,9 +15,22 @@ export function useCartContext(){
 function cartReducer(state ,{type , payload}){
     switch(type) {
         case 'add-item' :
-            if(state.find((product)=>product.title === payload.title)) return state
-            return  [...state , {...payload , quantity:1}]
-            break;
+            //if product was add from the listing page
+            if(!payload.quantity){
+                if(state.find((product)=>product.title === payload.title )) return state
+                return  [...state , {...payload , quantity: 1}]
+            }
+
+            //if product was added from the product page and the cart is empty
+            if(state.length == 0 ) return [...state , payload]
+            //if product was added from the product page
+            return  state.map((product)=>{
+                if(product.title == payload.title) {
+                    return {...product , quantity : product.quantity + payload.quantity }
+                }
+                return product
+            })
+            
         case 'remove-item' :
             return state.filter((product)=>product.title !== payload.title)
             break;
@@ -42,20 +55,15 @@ function cartReducer(state ,{type , payload}){
 }
 
 export default function CartProvider({children}){
-    const [showCart , setShowCart] = useState(false)
+    
     const [cartItems , dispatch] = useReducer(cartReducer , [])  
     const totalAmount = cartItems.reduce((total , item)=>{return total+(item.price*item.quantity)} , 0).toFixed(2)
     
-    function handleToggleCart(){
-        setShowCart(!showCart)
-    }
 
     const value = {
         totalAmount,
-        showCart,
         cartItems,
-        handleToggleCart,
-        dispatch
+        dispatch,
     }
 
     return (

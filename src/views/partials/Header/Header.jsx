@@ -7,7 +7,7 @@ import {BiSearch} from 'react-icons/bi'
 
 function Header() {
   return (
-    <header className=''>
+    <header >
       <div className='flex flex-col justify-between gap-4  py-4 md:flex-row md:items-center '>
         {/* logo */}
         <div className=''>
