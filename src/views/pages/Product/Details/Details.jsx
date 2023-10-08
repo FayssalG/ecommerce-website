@@ -1,5 +1,5 @@
+'use client'
 //contains state and helper functions related to the Details component (mainly for the read more functionality)
-
 import React from 'react'
 import useDetails from './useDetails'
 

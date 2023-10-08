@@ -6,14 +6,17 @@ import Link from 'next/link'
 
 import { useCartContext } from '@/views/providers/CartProvider'
 
-export default function OneProduct({item , key}) {
-  const {dispatch} = useCartContext() 
+import {urlForImage} from '../../../../../../sanity/lib/image'
 
+
+export default function OneProduct({item}) {
+  console.log({Listingpage : item.image[0]})
+  const {dispatch} = useCartContext() 
   return (
     <>
-      <div key={key} className='relative hover:opacity-75 px-2 transition-opacity'>
+      <div className='relative hover:opacity-75 px-2 transition-opacity'>
         <div className=' flex justify-center bg-slate-100 px-2 py-4'>
-          <img className=' w-56 h-56 object-contain' src={item.picture}/>
+          <img className=' w-56 h-56 object-contain' src={urlForImage(item.image[0])}/>
         </div>
 
         <div className='mt-2 relative '>
@@ -23,7 +26,7 @@ export default function OneProduct({item , key}) {
             <BsFillCartPlusFill className='hover:text-orange-500' size={24}/>
           </button>
         </div>
-        <Link href='/' className='absolute top-0 left-0 h-full w-full '></Link>
+        <Link href={item.slug.current} className='absolute top-0 left-0 h-full w-full '></Link>
       </div>
 
     </>

@@ -7,7 +7,9 @@ import DefaultLayout from '../../DefaultLayout'
 import Filters from './Filters/Filters'
 import Products from './Products/Products'
 
-export default function ProductsListing({category}) {
+
+export default function ProductsListing({products}) {
+
   
   return (
     <DefaultLayout>
@@ -15,7 +17,7 @@ export default function ProductsListing({category}) {
           {/* sorting options */}
           <div className='flex items-center gap-4 justify-between flex-wrap'>
             <div>
-              <h1 className='font-bold text-xl'>{category}</h1>
+              <h1 className='font-bold text-xl'>All</h1>
             </div>
             <div>
                 <div className='flex items-center justify-end'>
@@ -39,7 +41,7 @@ export default function ProductsListing({category}) {
 
               {/* Products */}
               <div className='bg-white  md:col-span-3 '>
-                  <Products />
+                  <Products products={products} />
               </div>
           </div>
       </div>    
