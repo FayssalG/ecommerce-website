@@ -8,9 +8,9 @@ function Homepage() {
   
   return (
     <DefaultLayout>
-      <div className='py-5'>
+      <div className=''>
         {/* Top section */}
-        <div  className='border-t-2 pt-5'>        
+        <div  className=''>        
           {/* navigation */}
 
           {/* <div className='h-96 bg-slate-200 w-1/4'>
@@ -32,17 +32,7 @@ function Homepage() {
               </nav>
           </div>
           */}
-          <div className=''>
-            <nav >
-              <ul className='flex gap-5 flex-col md:flex-row'>
-                <li className='text-slate-500'>Cell Phones</li>
-                <li className='text-slate-500'>Computers & accessories</li>
-                <li className='text-slate-500'>Television & Video</li>
-                <li className='text-slate-500'>Smartwatches</li>
-              
-              </ul>
-            </nav>
-          </div>
+          
           {/* Hero Products */}
           <div className='grid grid-cols-1 gap-2 mt-4 min-h-[400px] md:grid-cols-3'>
 

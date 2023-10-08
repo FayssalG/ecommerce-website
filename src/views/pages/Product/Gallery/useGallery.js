@@ -1,20 +1,30 @@
-import { useRef , useState } from "react";
+import { useEffect, useRef , useState } from "react";
 
 export default function useGallery(){
+    useEffect(()=>{
+        setIsMobileView(()=>window.matchMedia('(max-width:769px)'))
+        const mediaQuery = window.matchMedia('(max-width: 769px)')
+        mediaQuery.addEventListener('change' , (e)=>{
+            if(e.matches) setIsMobileView(true)
+            else setIsMobileView(false)       
+        })
+    },[])
 
     const slideRef = useRef(null)
     const [showScrollBtn , setShowScrollBtn] = useState({right:true , left:false})
-     
+    const [isMobileView  , setIsMobileView] = useState(false)
+    
+
     function scrollRight(){
       if(slideRef.current){
           const slideElement = slideRef.current
           slideElement.scrollTo({
               behavior : 'smooth',
-              left : slideElement.scrollLeft + 200
+              left : slideElement.scrollLeft + slideElement.clientWidth
           })
   
       
-          if(Math.ceil(slideElement.scrollLeft)+200 >= slideElement.scrollWidth-slideElement.clientWidth){
+          if(Math.ceil(slideElement.scrollLeft)+slideElement.clientWidth >= slideElement.scrollWidth-slideElement.clientWidth){
               setShowScrollBtn((prev)=>{return {...prev , right:false}})
           }
   
@@ -25,11 +35,12 @@ export default function useGallery(){
   
     function scrollLeft(){
       if(slideRef.current){
-          slideRef.current.scrollTo({
+        const slideElement = slideRef.current
+          slideElement.scrollTo({
               behavior : 'smooth',
-              left : slideRef.current.scrollLeft - 200
+              left : slideElement.scrollLeft - slideElement.clientWidth
           })
-          if(Math.floor(slideRef.current.scrollLeft)-200 <= 0){
+          if(Math.floor(slideElement.scrollLeft)-slideElement.clientWidth <= 0){
               setShowScrollBtn((prev)=>{return{...prev , left:false}})
           }
           setShowScrollBtn((prev)=>{return {...prev , right:true} })
@@ -39,6 +50,6 @@ export default function useGallery(){
   
 
     return{
-        slideRef,scrollLeft , scrollRight , showScrollBtn
+        slideRef, scrollLeft , scrollRight , showScrollBtn , isMobileView
     }
 }

@@ -29,7 +29,7 @@ export default function Cart() {
             </div>
         {   
             showCart &&
-            <div className='absolute flex-col flex justify-between bg-white rounded shadow shadow-slate-500 w-full mt-5 min-h-[200px] z-20 top-10 right-0 md:w-96  '>
+            <div className='absolute flex-col flex justify-between bg-white rounded shadow shadow-slate-500 w-full mt-5 min-h-[200px] z-20 top-10 right-0 lg:w-96  '>
               <ul className='flex flex-col gap-2 p-4 py-5 overflow-y-auto min-h-[100px] max-h-[400px]'>
                 {cartItems.length == 0 && <p className='text-slate-500 text-center mt-auto'>Cart is Empty</p> } 
                 { 

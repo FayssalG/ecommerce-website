@@ -2,30 +2,31 @@ import React from 'react'
 import './Header.css';
 import Cart from './Cart/Cart';
 
+import Link from 'next/link';
 import {AiOutlineHeart} from 'react-icons/ai'
 import {BiSearch} from 'react-icons/bi'
 
 function Header() {
   return (
-    <header >
-      <div className='flex flex-col justify-between gap-4  py-4 md:flex-row md:items-center '>
+    <header  className=' '>
+      <div className='flex flex-col justify-between gap-4  py-4 lg:flex-row lg:items-center '>
         {/* logo */}
         <div className=''>
-          <h1 className='text-2xl font-bolder'>ELe.Mart</h1>  
+          <Link href='/'> <h1 className='text-2xl font-bolder'>ELe.Mart</h1> </Link>  
         </div>
 
         {/* Search bar */}
         <from className=''>
 
-          <div className='flex flex-col gap-2 border-orange-500 md:flex-row md:gap-0'>
-            <input type='text' placeholder='Search for products' className='border-2  h-10 px-4 md:w-96' />
+          <div className='flex flex-col gap-2 border-orange-500 lg:flex-row lg:gap-0'>
+            <input type='text' placeholder='Search for products' className='border-2  h-10 px-4 lg:w-96' />
 
-            <select className='border-2 cursor-pointer  border-s-0 h-10  px-2 md:w-26'>
+            <select className='border-2 cursor-pointer  border-s-0 h-10  px-2 lg:w-26'>
               <option>All Categories</option>
             </select>
 
             <div className='bg-cyan-500  '>
-              <button className='flex justify-center items-center py-1 w-full h-full  md:w-12 '>
+              <button className='flex justify-center items-center py-1 w-full h-full  lg:w-12 '>
                 <BiSearch size={24} color='white'/>
               </button>
             </div>
@@ -48,6 +49,19 @@ function Header() {
           <Cart/>
         </div>
         
+      </div>
+
+      {/* Nav */}
+      <div className='pt-4 mt-5 border-t-2'>
+            <nav >
+              <ul className='flex gap-5 flex-col md:flex-row'>
+                <li className='text-slate-500'><Link href='/products'>Cell Phones</Link></li>
+                <li className='text-slate-500'><Link href='/'>Computers & accessories</Link></li>
+                <li className='text-slate-500'><Link href='/'>Television & Video</Link></li>
+                <li className='text-slate-500'><Link href='/'>Smartwatches</Link></li>
+              
+              </ul>
+            </nav>
       </div>
     </header>
   )

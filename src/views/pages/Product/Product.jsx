@@ -10,6 +10,7 @@ import item from './dummyProduct'
 import useProduct from './useProduct'
 import Details from './Details/Details'
 import Gallery from './Gallery/Gallery'
+import GalleryMobile from './Gallery/GalleryMobile'
 
 export default function Product() {
   const {
@@ -26,11 +27,15 @@ export default function Product() {
 
             <div className='flex items flex-wrap  gap-12 '>
                 {/* Product Images  */}
+                <div className=' rounded-xl w-full lg:w-1/2'>
                     <Gallery picture={item.picture}/>
+                    {/* <Gallery picture={item.picture}/> */}
+                </div>
+                
                 {/* Info */}
-                <div className=' min-w-[400px] '>
+                <div className='w-full lg:max-w-[400px] '>
                    <h1 className='text-2xl'>{item.title} </h1>
-                   <p className='text-sm pb-2 border-b-2 border-slate-100'>
+                   <p className='text-sm pb-2 border-b-2 border-slate-100 '>
                         <span className='me-2'>Brand</span>
                         <span className='text-slate-400'>{item.brand}</span>
                     </p>
@@ -62,12 +67,12 @@ export default function Product() {
                     </div>
 
                     {/* Add to Cart and Buy Buttons */}
-                    <div className='flex gap-4 mt-4'>
-                        <button onClick={()=>addProductToCart(item)} className='flex items-center justify-center gap-2 px-4 py-2 w-full border border-slate-400 rounded-lg hover:opacity-75'>
+                    <div className='flex flex-col w-full gap-4 mt-4 lg:flex-row'>
+                        <button onClick={()=>addProductToCart(item)} className='flex w-full items-center justify-center gap-2 px-4 py-2  border border-slate-400 rounded-lg hover:opacity-75'>
                             <BsCart3/>
                             Add To Cart
                         </button>
-                        <button className='bg-orange-500 text-white rounded-lg px-4 py-2 w-full hover:opacity-75 '>
+                        <button className='bg-orange-500 w-full text-white rounded-lg px-4 py-2  hover:opacity-75 '>
                             Buy Now
                         </button>
                     </div>
@@ -77,12 +82,12 @@ export default function Product() {
 
 
             {/* Details (Description and Specs) */}
-            <div className='bg-slate-100 py-2 px-4 mt-4 rounded me-20'>
+            <div className='bg-slate-100 py-2 px-4 mt-10 rounded lg:me-20'>
                 <Details/>
             </div>
 
             {/* Customers reviews */}
-            <div className='bg-slate-100 py-2 px-4 mt-4 rounded me-20'>
+            <div className='bg-slate-100 py-2 px-4 mt-4 rounded lg:me-20'>
                 <h2 className='text-xl font-light'>Reviews</h2>                
             </div>
         </div>

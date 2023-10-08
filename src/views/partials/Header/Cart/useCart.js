@@ -10,6 +10,7 @@ export default function useCart() {
       
     useEffect(()=>{
         document.addEventListener('click' , handleClickAway , true)
+        return ()=>document.removeEventListener('click' , handleClickAway)
     },[])
 
     function handleToggleCart(){
@@ -17,6 +18,8 @@ export default function useCart() {
     }
 
     function handleClickAway(e){
+        if(!e.target) return
+        if(showCart === false) return
         if(!cartBtnRef.current.contains(e.target)){
             setShowCart(false)
         }

@@ -9,9 +9,10 @@ function DefaultLayout({children}) {
           <Header/>
           {children}
           <Footer/>
-
       </div>
   )
 }
+
+
 
 export default DefaultLayout
