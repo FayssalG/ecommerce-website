@@ -1,19 +1,21 @@
-
+'use client'
 import DefaultLayout from '@/views/DefaultLayout'
 import React from 'react'
 
 import { AiFillStar , AiOutlineStar }  from 'react-icons/ai'
 
+import {BsCart3 } from 'react-icons/bs'
+
 import Details from './Details/Details'
 import Gallery from './Gallery/Gallery'
-
-import {urlForImage} from '../../../../sanity/lib/image'
-
 import Quantity from './Quantity/Quantity'
 import Buttons from './Buttons/Buttons'
+import useProduct from './useProduct'
 
 
 export default function Product({product}) {
+  const {increaseQuantity , decreaseQuantity , quantity ,addProductToCart} = useProduct()
+
   if(!product) return
  
   return (
@@ -22,7 +24,7 @@ export default function Product({product}) {
             <div className='flex items flex-wrap  gap-12 '>
                 {/* Product Images  */}
                 <div className=' rounded-xl w-full lg:w-1/2'>
-                    <Gallery picture={product.image[0]}/>
+                    <Gallery images={product.image}/>
                 </div>
                 
                 {/* Info */}
@@ -30,7 +32,7 @@ export default function Product({product}) {
                    <h1 className='text-2xl'>{product.title} </h1>
                    <p className='text-sm pb-2 border-b-2 border-slate-100 '>
                         <span className='me-2'>Brand</span>
-                        <span className='text-slate-400'>Apple</span>
+                        <span className='text-slate-400'>{product.brand}</span>
                     </p>
 
                     {/* Rating */}
@@ -51,12 +53,13 @@ export default function Product({product}) {
 
                     {/* Quantity */}
                     <div className='mt-9 flex items-center gap-12'>
-                        <Quantity/>
+                      
+                        <Quantity quantity={quantity} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/>
                     </div>
 
                     {/* Add to Cart and Buy Buttons */}
                     <div className='flex flex-col w-full gap-4 mt-4 lg:flex-row'>
-                        <Buttons/>
+                      <Buttons item={product} addProductToCart={addProductToCart}/>
                     </div>
                 </div>
             </div>

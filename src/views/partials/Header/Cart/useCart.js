@@ -5,6 +5,7 @@ import { useCartContext } from '../../../providers/CartProvider'
 
 export default function useCart() {
     const [showCart , setShowCart] = useState(false)
+    
     const cartBtnRef = useRef(null)
     const { cartItems , totalAmount , dispatch } = useCartContext()
       
@@ -18,8 +19,7 @@ export default function useCart() {
     }
 
     function handleClickAway(e){
-        if(!e.target) return
-        if(showCart === false) return
+        if(!e.target || !cartBtnRef.current) return
         if(!cartBtnRef.current.contains(e.target)){
             setShowCart(false)
         }

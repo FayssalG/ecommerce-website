@@ -9,13 +9,18 @@ module.exports = {
   theme: {
     extend: {
       keyframes:{
-        fadeIn : {
+        slideDown : {
           '0%' : {transform : 'translateY(-9px)' , opacity:'0'},
           '100%' : {transform : 'translateY(0)' , opacity:'1'}
+        },
+        fadeIn : {
+          '0%' : { opacity : '0'},
+          '100%': {opacity: '1'}
         }
       },
       animation:{
-        'fadeIn' : 'fadeIn 200ms linear forwards'
+        'slideDown' : 'slideDown 200ms linear forwards',
+        'fadeIn' : 'fadeIn 250ms linear forwards'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

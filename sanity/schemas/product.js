@@ -18,6 +18,11 @@ export default {
             type : 'string',
         },
         {
+            name: 'brand',
+            title : 'Brand',
+            type : 'string'
+        },
+        {
             name : 'price',
             title : 'Price',
             type : 'number'
@@ -35,6 +40,14 @@ export default {
                 source : 'title',
                 maxLength : 90
             }
+        },
+        {
+            name: 'category',
+            title : 'Category',
+            type : 'reference',
+            to : [
+                {type : 'category'}
+            ]
         }
     ]
 

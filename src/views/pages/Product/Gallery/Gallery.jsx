@@ -7,9 +7,11 @@ import {SlArrowRight} from 'react-icons/sl'
 import GalleryDesktop from './GalleryDesktop'
 import GalleryMobile from './GalleryMobile'
 import useGallery from './useGallery'
-export default function Gallery({picture}) {
+
+export default function Gallery({images}) {
     const {isMobileView} = useGallery()
+    const imagesUrl = images.map((img)=>urlForImage(img))
     return (
-        isMobileView ? <GalleryMobile picture={urlForImage(picture)}/> : <GalleryDesktop picture={urlForImage(picture)} />
+        isMobileView ? <GalleryMobile images={imagesUrl}/> : <GalleryDesktop images={imagesUrl} />
     )
 }

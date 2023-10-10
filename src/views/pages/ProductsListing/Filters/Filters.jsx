@@ -15,7 +15,7 @@ export default function Filters() {
                 Category {isFilterCategory ? '-' : '+'} 
             </button>
             {isFilterCategory &&
-                <ul className='font-light ms-4 mt-4 flex flex-col gap-2 origin-top animate-fadeIn'>
+                <ul className='font-light ms-4 mt-4 flex flex-col gap-2 origin-top animate-slideDown'>
                 <li><Link href='/products/smartphones' >Smartphones</Link></li>
                 <li><Link href='/products/smartwatches' >Smartwatches</Link></li>
                 <li><Link href='/products/accessories' >Accessories</Link></li> 
@@ -30,7 +30,7 @@ export default function Filters() {
                 Brand {isFilterBrand ? '-' : '+'} 
             </button>
             {isFilterBrand &&
-                <ul className='font-light ms-4 mt-4 flex flex-col gap-2 origin-top animate-fadeIn'>
+                <ul className='font-light ms-4 mt-4 flex flex-col gap-2 origin-top animate-slideDown'>
                 <li><Checkbox label='Apple' /></li>
                 <li><Checkbox label='Asus' /></li>
                 <li><Checkbox label='Samsung' /></li>

@@ -52,7 +52,7 @@ function Header() {
       </div>
 
       {/* Nav */}
-      <div className='pt-4 mt-5 border-t-2'>
+      {/* <div className='pt-4 mt-5 border-t-2'>
             <nav >
               <ul className='flex gap-5 flex-col md:flex-row'>
                 <li className='text-slate-500'><Link href='/products'>Cell Phones</Link></li>
@@ -62,7 +62,7 @@ function Header() {
               
               </ul>
             </nav>
-      </div>
+      </div> */}
     </header>
   )
 }

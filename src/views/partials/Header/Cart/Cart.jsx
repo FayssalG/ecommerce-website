@@ -4,7 +4,7 @@
 import React from 'react'
 import {BsCart3 , BsTrash} from 'react-icons/bs'
 
-
+import { urlForImage } from '../../../../../sanity/lib/image'
 import useCart from './useCart'
 
 export default function Cart() {
@@ -38,7 +38,7 @@ export default function Cart() {
                           <li className='border-b-2 border-slate-100 pb-4'>
                             <div className='flex  '>
                                 <div className='w-1/2 '>
-                                  <img className='mx-auto w-36 h-36 object-contain' src={item.picture} ></img>
+                                  <img className='mx-auto w-36 h-36 object-contain' src={urlForImage(item.image[0])} ></img>
                                 </div>
                       
                                 <div className='w-1/2'>

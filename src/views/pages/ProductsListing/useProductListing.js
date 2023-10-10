@@ -11,10 +11,9 @@ function reducer(state , {type}){
     }
 }
 
-import { products as productsList} from './dummyData'
 export default function useProductListing() {
     const [isFilter , dispatch] = useReducer(reducer , {category : false , brand:false})
-    const [products , setProducts ] = useState(productsList)
+    const [products , setProducts ] = useState([])
     
     const handleShowFilter = (e)=>{
         dispatch({type : e.target.dataset.filtertype})

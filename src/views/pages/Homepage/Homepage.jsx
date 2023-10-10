@@ -3,8 +3,11 @@ import DefaultLayout from '../../DefaultLayout'
 
 import {SlArrowRight} from 'react-icons/sl'
 import {FaTruckFast} from 'react-icons/fa6'
+import Link from 'next/link'
 
-function Homepage() {
+
+function Homepage({categories}) {
+  console.log(categories)
   
   return (
     <DefaultLayout>
@@ -12,7 +15,17 @@ function Homepage() {
         {/* Top section */}
         <div  className=''>        
           {/* navigation */}
-
+          <div className='pt-4 mt-5 border-t-2'>
+            <nav >
+              <ul className='flex gap-5 flex-col md:flex-row'>
+                {
+                  categories.map((category)=>{
+                    return <li className='text-slate-500'><Link href={'/products/'+category.name}>{category.name}</Link></li>
+                  })
+                }              
+              </ul>
+            </nav>
+          </div>
           {/* <div className='h-96 bg-slate-200 w-1/4'>
               <nav>
                 <ul className='text-gray-500 p-4  '>

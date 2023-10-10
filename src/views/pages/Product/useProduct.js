@@ -1,23 +1,28 @@
 //Manages the states and helper fuctions related to the Product component  
-
-import React, { useState } from 'react'
+'use client'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useCartContext } from '@/views/providers/CartProvider'
 
 export default function useProduct() {
     const [quantity , setQuantity] = useState(1)    
     const {dispatch } = useCartContext()
-
+    
+    useEffect(()=>{
+        console.log(quantity)
+    })
     function increaseQuantity(){
-        setQuantity(quantity + 1)
+        setQuantity((prev)=>prev + 1)
     }
 
     function decreaseQuantity(){
-        if(quantity==0) return
-        setQuantity(quantity -1 )
+        if(quantity==1) return
+        setQuantity((prev)=>prev -1 )
     }
 
-    function addProductToCart(item){
-        dispatch({type:'add-item' , payload:{...item , quantity}})
+    
+    
+    const addProductToCart = (item)=>{
+        dispatch({type:'add-item' , payload:{...item , quantity : quantity}})
         setQuantity(1)
     }
 

@@ -5,10 +5,10 @@ import DefaultLayout from '../../DefaultLayout'
 
 //components
 import Filters from './Filters/Filters'
-import Products from './Products/Products'
+import ProductsList from './ProductsList/ProductsList'
 
 
-export default function ProductsListing({products}) {
+export default function ProductsListing({products , category}) {
 
   
   return (
@@ -17,7 +17,7 @@ export default function ProductsListing({products}) {
           {/* sorting options */}
           <div className='flex items-center gap-4 justify-between flex-wrap'>
             <div>
-              <h1 className='font-bold text-xl'>All</h1>
+              <h1 className='font-bold  tracking-wider border-l-8 border-cyan-500 ps-2 text-2xl'>{category ? category.toUpperCase() : 'All'}</h1>
             </div>
             <div>
                 <div className='flex items-center justify-end'>
@@ -41,7 +41,7 @@ export default function ProductsListing({products}) {
 
               {/* Products */}
               <div className='bg-white  md:col-span-3 '>
-                  <Products products={products} />
+                  <ProductsList products={products} />
               </div>
           </div>
       </div>    

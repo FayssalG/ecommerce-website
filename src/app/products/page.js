@@ -10,8 +10,8 @@ async function getProducts(){
     return  products
 }
 
-
-export default async function Page() {
+export const revalidate = 0 
+export default async function ProductsListingPage() {
   const products = await getProducts()
 
   return (
