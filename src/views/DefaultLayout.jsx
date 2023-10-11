@@ -5,7 +5,7 @@ import { useCartContext } from './providers/CartProvider'
 
 function DefaultLayout({children}) {
   return (
-      <div  className='container w-full px-2 mx-auto md:w-[80vw]' >
+      <div  className='container w-full px-2 mx-auto lg:w-[80vw]' >
           <Header/>
           {children}
           <Footer/>

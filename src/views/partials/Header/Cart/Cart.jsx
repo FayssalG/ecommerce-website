@@ -29,7 +29,7 @@ export default function Cart() {
             </div>
         {   
             showCart &&
-            <div className='absolute flex-col flex justify-between bg-white rounded shadow shadow-slate-500 w-full mt-5 min-h-[200px] z-20 top-10 right-0 lg:w-96  '>
+            <div className='absolute flex-col flex justify-between bg-white rounded shadow shadow-slate-500 w-full mt-5 min-h-[200px] z-40 top-10 right-0 lg:w-96  '>
               <ul className='flex flex-col gap-2 p-4 py-5 overflow-y-auto min-h-[100px] max-h-[400px]'>
                 {cartItems.length == 0 && <p className='text-slate-500 text-center mt-auto'>Cart is Empty</p> } 
                 { 
@@ -42,7 +42,7 @@ export default function Cart() {
                                 </div>
                       
                                 <div className='w-1/2'>
-                                  <h2 className=' '>{item.title}</h2>                              
+                                  <h2 className='text-sm '>{item.title}</h2>                              
                                   <p className=' text-orange-500 font-bold'>${item.price}</p>
                                   {/* Quantity */}
                                   <div className='mt-2'>
@@ -55,8 +55,8 @@ export default function Cart() {
                                   </div>
                                 </div>
 
-                                <div>
-                                  <button className='hover:text-orange-500' onClick={()=>dispatch({type:'remove-item',payload:item})}>
+                                <div className='w-16 h-fit flex justify-end'>
+                                  <button className='ml-auto hover:text-orange-500' onClick={()=>dispatch({type:'remove-item',payload:item})}>
                                     <BsTrash/>
                                   </button>
                                 </div>

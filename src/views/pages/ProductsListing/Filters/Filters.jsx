@@ -18,7 +18,7 @@ export default function Filters({categoriesFilter , brandsFilter}) {
                 <ul className='font-light ms-4 mt-4 flex flex-col gap-2 origin-top animate-slideDown'>
                     {
                         categoriesFilter.map((category,index)=>{
-                            return <li key={index}><Link href={'/products/'+category} >{category}</Link></li>
+                            return <li key={index}><Link href={'/products/'+category.name} >{category.title}</Link></li>
                         })                            
                     }
                     {/* <li><Link href='/products/smartwatches' >Smartwatches</Link></li>

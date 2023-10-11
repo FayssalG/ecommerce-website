@@ -32,14 +32,14 @@ export default function ProductsListing({products ,categoriesFilter, brandsFilte
           </div>
 
           {/* Products and filters*/}
-          <div className='grid gap-2 mt-5   md:grid-cols-4 '> 
+          <div className='grid gap-2 mt-5   lg:grid-cols-4 '> 
               {/* filters */}
-              <div className='bg-slate-100 p-4 flex flex-col min-h-[200px] h-fit  gap-5 md:col-span-1'>
+              <div className='bg-slate-100 p-4 flex flex-col min-h-[200px] h-fit  gap-5 lg:col-span-1'>
                   <Filters categoriesFilter={categoriesFilter}/>
               </div>
 
               {/* Products */}
-              <div className='bg-white  md:col-span-3 '>
+              <div className='bg-white  lg:col-span-3 '>
                   <ProductsList products={products} />
               </div>
           </div>

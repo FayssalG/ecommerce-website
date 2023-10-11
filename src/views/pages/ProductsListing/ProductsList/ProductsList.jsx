@@ -18,7 +18,7 @@ export default function ProductsList({products}) {
           </div>
         
       }
-      <div className='w-full h-full grid gap-y-9 md:grid-cols-3 md:gap-y-10 md:gap-x-4'>
+      <div className='w-full h-full grid gap-y-9 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-10 lg:gap-x-4'>
           {
             products.map((item , index)=>{
               return (

@@ -3,16 +3,22 @@ import {client} from '../../sanity/lib/client'
 
 
 
-async function getProducts(){
-    const query = '*[_type == "product"]'
+async function getProducts(q){
+    let query = '*[_type == "product"]'
+    if(q != null) query =  `*[_type == "product" && [title,brand] match "${q}*"]`
     let products = await client.fetch(query)
     return  products
 }
 
-async function getProductsByCategory(category){
-    const query = `*[_type == "category" && name=="${category}"]{
+async function getProductsByCategory(category , q){
+    let query = `*[_type == "category" && name=="${category}"]{
       "products" : *[_type=="product" && references(^._id)]
     }`
+
+    if(q!= null) query = `*[_type == "category" && name=="${category}"]{
+        "products" : *[_type=="product" && [title,brand] match "${q}" && references(^._id)]
+      }` 
+
     let products = await client.fetch(query)
     return  products[0]?.products
 }
@@ -33,10 +39,10 @@ async function checkCategory(category){
   
   
 async function getCategories(){
-  const query = '*[_type == "category"]{ name }'
+  const query = '*[_type == "category"]{ name , title }'
   let categories = await client.fetch(query)
   
-  return  categories.map((cat)=>cat.name)
+  return  categories
 }
 
 export {getProducts , getProductsByCategory, getProduct  ,getCategories  , checkCategory }

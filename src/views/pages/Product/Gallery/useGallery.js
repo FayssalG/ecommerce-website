@@ -11,7 +11,7 @@ export default function useGallery(){
 
 
         if(slideRef.current && (slideRef.current.clientWidth < slideRef.current.scrollWidth)){
-            setShowScrollBtn({right:false , left:true})
+            setShowScrollBtn({right:true , left:false})
         }
     },[])
 
@@ -31,7 +31,7 @@ export default function useGallery(){
           if(Math.ceil(slideElement.scrollLeft)+slideElement.clientWidth >= slideElement.scrollWidth-slideElement.clientWidth){
             setShowScrollBtn((prev)=>{return {...prev , right:false}})
           }
-          
+          setShowScrollBtn((prev)=>{return {...prev , left:true}})
           setActiveImgIndex(prev=>prev+1)
       }
     }

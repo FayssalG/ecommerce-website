@@ -20,7 +20,7 @@ function Homepage({categories}) {
               <ul className='flex gap-5 flex-col md:flex-row'>
                 {
                   categories.map((category)=>{
-                    return <li className='text-slate-500'><Link href={'/products/'+category.name}>{category.name}</Link></li>
+                    return <li className='text-slate-500'><Link href={'/products/'+category.name}>{category.title}</Link></li>
                   })
                 }              
               </ul>
