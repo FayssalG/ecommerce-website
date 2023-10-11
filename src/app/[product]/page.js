@@ -1,19 +1,18 @@
 import React from 'react'
 import Product from '@/views/pages/Product/Product'
 import CartProvider from '@/views/providers/CartProvider'
-import {client} from '../../../sanity/lib/client'
-import { urlForImage } from '../../../sanity/lib/image'
+import { notFound } from 'next/navigation'
 
 
-async function getProduct(slug){
-  const query = `*[_type=="product" && slug.current=="${slug}"]`
-  const product = await client.fetch(query)
-  return product[0]
-}
+import { getProduct } from '@/lib/sanity'
+
+
+
 
 
 export default async function ProductPage({params : {product : productSlug}}) {
   const product = await getProduct(productSlug) 
+  if(!product) notFound()
 
   return (
     <CartProvider>

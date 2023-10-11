@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Checkbox from './Checkbox/Checkbox'
 import useProductListing from '../useProductListing'
 
-export default function Filters() {
+export default function Filters({categoriesFilter , brandsFilter}) {
   const {handleShowFilter , isFilterBrand , isFilterCategory } = useProductListing()
 
   return (
@@ -16,10 +16,14 @@ export default function Filters() {
             </button>
             {isFilterCategory &&
                 <ul className='font-light ms-4 mt-4 flex flex-col gap-2 origin-top animate-slideDown'>
-                <li><Link href='/products/smartphones' >Smartphones</Link></li>
-                <li><Link href='/products/smartwatches' >Smartwatches</Link></li>
-                <li><Link href='/products/accessories' >Accessories</Link></li> 
-                <li><Link href='/products/tv-audio' >TV & Audio</Link></li>
+                    {
+                        categoriesFilter.map((category,index)=>{
+                            return <li key={index}><Link href={'/products/'+category} >{category}</Link></li>
+                        })                            
+                    }
+                    {/* <li><Link href='/products/smartwatches' >Smartwatches</Link></li>
+                    <li><Link href='/products/accessories' >Accessories</Link></li> 
+                    <li><Link href='/products/tv-audio' >TV & Audio</Link></li> */}
                 </ul>
             }                   
         </div>

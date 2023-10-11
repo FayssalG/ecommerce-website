@@ -8,9 +8,8 @@ import Filters from './Filters/Filters'
 import ProductsList from './ProductsList/ProductsList'
 
 
-export default function ProductsListing({products , category}) {
+export default function ProductsListing({products ,categoriesFilter, brandsFilter , category }) {
 
-  
   return (
     <DefaultLayout>
       <div className='mt-10 mb-20'>
@@ -33,10 +32,10 @@ export default function ProductsListing({products , category}) {
           </div>
 
           {/* Products and filters*/}
-          <div className='grid gap-2 mt-5  min-h-[900px] md:grid-cols-4 '> 
+          <div className='grid gap-2 mt-5   md:grid-cols-4 '> 
               {/* filters */}
               <div className='bg-slate-100 p-4 flex flex-col min-h-[200px] h-fit  gap-5 md:col-span-1'>
-                  <Filters/>
+                  <Filters categoriesFilter={categoriesFilter}/>
               </div>
 
               {/* Products */}

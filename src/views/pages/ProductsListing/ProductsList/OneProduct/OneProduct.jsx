@@ -10,7 +10,6 @@ import {urlForImage} from '../../../../../../sanity/lib/image'
 
 
 export default function OneProduct({item}) {
-  console.log({Listingpage : item.image[0]})
   const {dispatch} = useCartContext() 
   return (
     <>
@@ -26,7 +25,7 @@ export default function OneProduct({item}) {
             <BsFillCartPlusFill className='hover:text-orange-500' size={24}/>
           </button>
         </div>
-        <Link href={item.slug.current} className='absolute top-0 left-0 h-full w-full '></Link>
+        <Link href={'/'+item.slug.current} className='absolute top-0 left-0 h-full w-full '></Link>
       </div>
 
     </>

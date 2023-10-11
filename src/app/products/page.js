@@ -2,21 +2,16 @@ import ProductsListing from '@/views/pages/ProductsListing/ProductsListing'
 import CartProvider from '@/views/providers/CartProvider'
 import React from 'react'
 
-import {client} from '../../../sanity/lib/client'
+import {getProducts , getCategories} from '../../lib/sanity'
 
-async function getProducts(){
-    const query = '*[_type == "product"]'
-    let products = await client.fetch(query)
-    return  products
-}
 
 export const revalidate = 0 
 export default async function ProductsListingPage() {
   const products = await getProducts()
-
+  const categories = await getCategories()
   return (
     <CartProvider>
-      <ProductsListing products={products} />
+      <ProductsListing products={products} categoriesFilter={categories}/>
     </CartProvider>
   )
 }

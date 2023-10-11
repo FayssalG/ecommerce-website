@@ -1,23 +1,27 @@
+
 import ProductsListing from '@/views/pages/ProductsListing/ProductsListing'
 import CartProvider from '@/views/providers/CartProvider'
+import { notFound } from 'next/navigation'
 
 import React from 'react'
-import { client } from '../../../../sanity/lib/client'
+import {  getCategories , getProductsByCategory , checkCategory} from '@/lib/sanity'
 
-async function getProductsByCategory(category){
-  const query = `*[_type == "category" && name=="smartphones"]{
-    "products" : *[_type=="product" && references(^._id)]
-  }`
-  let products = await client.fetch(query)
-  return  products[0].products
-}
+
+
+
 
 
 export default async function ProductsByCategoryPage({ params:{category} }) {
-  const productsByCategory = await getProductsByCategory(category)
+  category = category.toLowerCase()
+  
+  const isCategory = await checkCategory(category)
+  if(!isCategory) notFound()
+
+  const productsByCategory = await getProductsByCategory(category) ?? []
+  const categories = await getCategories()
   return (
     <CartProvider>
-      <ProductsListing category={category}  products={productsByCategory}/>
+      <ProductsListing category={category}  products={productsByCategory} categoriesFilter={categories}/>
     </CartProvider>
   )
 }
