@@ -2,12 +2,14 @@
 
 import React from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import Checkbox from './Checkbox/Checkbox'
 import useProductListing from '../useProductListing'
 
 export default function Filters({categoriesFilter , brandsFilter}) {
   const {handleShowFilter , isFilterBrand , isFilterCategory } = useProductListing()
-
+  const pathname = usePathname()
+    
   return (
     <>
         <div className=''>
@@ -15,10 +17,17 @@ export default function Filters({categoriesFilter , brandsFilter}) {
                 Category {isFilterCategory ? '-' : '+'} 
             </button>
             {isFilterCategory &&
-                <ul className='font-light ms-4 mt-4 flex flex-col gap-2 origin-top animate-slideDown'>
+                <ul   className='font-light ms-4 mt-4 flex flex-col gap-2 origin-top '>
                     {
                         categoriesFilter.map((category,index)=>{
-                            return <li key={index}><Link href={'/products/'+category.name} >{category.title}</Link></li>
+                            let newPathname = pathname                            
+                            if(newPathname=='/products') newPathname = '/products/' 
+                            let isPath = newPathname == '/products/'+category.name
+                            return (
+                            <li key={index}>
+                                <Link className={isPath ? 'text-orange-500' : ''} href={'/products/'+category.name+category.withParams} >{category.title}</Link>
+                            </li>
+                            )
                         })                            
                     }
                     {/* <li><Link href='/products/smartwatches' >Smartwatches</Link></li>

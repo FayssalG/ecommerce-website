@@ -16,7 +16,7 @@ async function getProductsByCategory(category , q){
     }`
 
     if(q!= null) query = `*[_type == "category" && name=="${category}"]{
-        "products" : *[_type=="product" && [title,brand] match "${q}" && references(^._id)]
+        "products" : *[_type=="product" && [title,brand] match "${q}*" && references(^._id)]
       }` 
 
     let products = await client.fetch(query)
@@ -34,14 +34,17 @@ async function checkCategory(category){
     const query = `*[_type == "category" && name=="${category}"]`
     const [cat] = await client.fetch(query)
     if(!cat) return false
-    return true
+    return cat
   }
   
   
-async function getCategories(){
+async function getCategories(q){
   const query = '*[_type == "category"]{ name , title }'
   let categories = await client.fetch(query)
-  
+  categories.unshift({name:'', title:'All'})
+  categories = categories.map((cat)=>{
+    return {...cat , withParams: (q ? '?q='+q : '')} 
+    })
   return  categories
 }
 

@@ -7,7 +7,7 @@ import {AiOutlineHeart} from 'react-icons/ai'
 import {BiSearch} from 'react-icons/bi'
 import Searchbar from './Searchbar/Searchbar';
 
-function Header() {
+function Header({categories}) {
   return (
     <header  className=' '>
       <div className='flex flex-col justify-between gap-4  py-4 lg:flex-row lg:items-center '>
@@ -18,7 +18,7 @@ function Header() {
 
         {/* Search bar */}
       <div>
-        <Searchbar/>
+        <Searchbar categories={categories}/>
       </div>
         
 

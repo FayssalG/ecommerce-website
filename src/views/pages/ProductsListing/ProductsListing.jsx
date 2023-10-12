@@ -8,15 +8,14 @@ import Filters from './Filters/Filters'
 import ProductsList from './ProductsList/ProductsList'
 
 
-export default function ProductsListing({products ,categoriesFilter, brandsFilter , category }) {
-
+export default function ProductsListing({products ,categoriesFilter, brandsFilter , categoryTitle }) {
   return (
     <DefaultLayout>
       <div className='mt-10 mb-20'>
           {/* sorting options */}
           <div className='flex items-center gap-4 justify-between flex-wrap'>
             <div>
-              <h1 className='font-bold  tracking-wider border-l-8 border-cyan-500 ps-2 text-2xl'>{category ? category.toUpperCase() : 'All'}</h1>
+              <h1 className='font-bold  tracking-wider border-l-8 border-cyan-500 ps-2 text-2xl'>{categoryTitle ? categoryTitle : 'All'}</h1>
             </div>
             <div>
                 <div className='flex items-center justify-end'>

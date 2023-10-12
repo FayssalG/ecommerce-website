@@ -12,7 +12,7 @@ function reducer(state , {type}){
 }
 
 export default function useProductListing() {
-    const [isFilter , dispatch] = useReducer(reducer , {category : false , brand:false})
+    const [isFilter , dispatch] = useReducer(reducer , {category : true , brand:false})
     const [products , setProducts ] = useState([])
     
     const handleShowFilter = (e)=>{

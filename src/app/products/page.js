@@ -8,13 +8,7 @@ export const revalidate = 0
 
 export default async function ProductsListingPage({searchParams:{q}}) {
   const products = await getProducts(q)
-  let categories = await getCategories()
-  categories.unshift({name:'', title:'All'})
-  if(q){
-    categories = categories.map((cat)=>{
-      return {...cat , name: cat.name + '?q='+q} 
-     })
-  }
+  let categories = await getCategories(q)
   
   return (
     <CartProvider>
