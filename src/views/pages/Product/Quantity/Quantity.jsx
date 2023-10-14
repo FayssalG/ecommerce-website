@@ -1,8 +1,9 @@
+'use client'
 import React from 'react'
-import useProduct from '../useProduct'
-
-export default function Quantity({quantity , increaseQuantity , decreaseQuantity}) {
-
+import { useProduct } from '../ProductProvider'
+export default function Quantity() {
+  const {quantity , increaseQuantity , decreaseQuantity } = useProduct()
+  
   return (
     <>
         <p className='text-slate-400'>Quantity : </p>

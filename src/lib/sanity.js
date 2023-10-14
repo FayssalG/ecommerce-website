@@ -3,9 +3,16 @@ import {client} from '../../sanity/lib/client'
 
 
 
-async function getProducts(q){
+async function getProducts(q , page , sortBy ){
+    let productsPerPage = 10 
     let query = '*[_type == "product"]'
     if(q != null) query =  `*[_type == "product" && [title,brand] match "${q}*"]`
+    if(page) query += `[${(page-1)*productsPerPage}...${page*productsPerPage}]`
+    else query+= `[0...10]`
+    if(sortBy) query += ` | order(${sortBy})`
+
+    console.log(query)
+    
     let products = await client.fetch(query)
     return  products
 }

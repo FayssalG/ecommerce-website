@@ -11,10 +11,11 @@ import {urlForImage} from '../../../../../../sanity/lib/image'
 
 export default function OneProduct({item}) {
   const {dispatch} = useCartContext() 
+
   return (
     <>
       <div className='relative hover:scale-[1.05] focus:scale-[1.05] px-2 transition-transform'>
-        <div className=' flex justify-center bg-slate-100 px-2 py-4'>
+        <div className=' flex justify-center  px-2 py-4'>
           <img className=' w-56 h-56 object-contain' src={urlForImage(item.image[0])}/>
         </div>
 

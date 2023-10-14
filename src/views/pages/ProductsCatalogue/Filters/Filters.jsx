@@ -4,12 +4,12 @@ import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Checkbox from './Checkbox/Checkbox'
-import useProductListing from '../useProductListing'
+import useFilters from './useFilters'
 
-export default function Filters({categoriesFilter , brandsFilter}) {
-  const {handleShowFilter , isFilterBrand , isFilterCategory } = useProductListing()
+export default function Filters({categoriesFilter , brandsFilter }) {
   const pathname = usePathname()
-    
+  const {isFilterBrand , isFilterCategory , handleShowFilter} = useFilters()
+  
   return (
     <>
         <div className=''>
