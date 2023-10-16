@@ -11,7 +11,7 @@ export default function useSearchbar(){
         console.log('test')
         if(inputRef.current && selectRef.current){
             if(inputRef.current.value==null) return
-            if(selectRef.current.value=='all') router.push('/products?q='+inputRef.current.value)        
+            if(selectRef.current.value==='') router.push('/products?q='+inputRef.current.value)        
             else router.push(`/products/${selectRef.current.value}?q=${inputRef.current.value}`)        
         }
     }

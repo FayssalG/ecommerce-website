@@ -9,7 +9,7 @@ export default function GalleryDesktop({images}) {
     return (
         <>
         <div className='h-[400px]  rounded-xl '>
-            <img key={activeImgIndex} className='mx-auto h-full object-cover animate-fadeIn ' src={images[activeImgIndex]} alt="" />
+            <img key={activeImgIndex} className='mx-auto h-full object-contain animate-fadeIn ' src={images[activeImgIndex]} alt="" />
         </div>
         <div className='relative'>
             {

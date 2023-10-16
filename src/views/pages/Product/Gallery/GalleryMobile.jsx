@@ -17,7 +17,7 @@ export default function GalleryMobile({images}) {
             <div ref={slideRef} className='mt-4 h-[400px]  flex gap-2  overflow-hidden [&>div]:shrink-0'>
                 {
                     images.map((img)=>{
-                        return <div className='w-full   rounded-xl'> <img className='mx-auto h-full object-cover' src={img} alt="" /></div>
+                        return <div className='w-full   rounded-xl'> <img className='mx-auto h-full object-contain' src={img} alt="" /></div>
                         
                     })
                 }

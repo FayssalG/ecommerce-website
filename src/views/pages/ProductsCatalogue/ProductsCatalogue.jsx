@@ -9,7 +9,7 @@ import Sort from './Sort/Sort'
 import ProductsCatalogueProvider from './ProductsCatalogueProvider'
 
 export default function ProductsCatalogue({products,categoriesFilter, brandsFilter , categoryTitle }) {
-
+  
   return (
     <DefaultLayout>
       <ProductsCatalogueProvider products={products}>
@@ -28,7 +28,8 @@ export default function ProductsCatalogue({products,categoriesFilter, brandsFilt
                 {/* filters */}
                 <div className='border-r p-4 flex flex-col h-full h-fit  gap-5 lg:col-span-1'>
                     <Filters 
-                      categoriesFilter={categoriesFilter} 
+                      categoriesFilter={categoriesFilter}
+                      brandsFilter={brandsFilter} 
                     />
                 </div>
 

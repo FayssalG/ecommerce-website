@@ -20,7 +20,11 @@ export default {
         {
             name: 'brand',
             title : 'Brand',
-            type : 'string'
+            // type : 'string'
+            type : 'reference',
+            to : [
+                {type : 'brand'}
+            ]
         },
         {
             name : 'price',

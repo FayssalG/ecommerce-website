@@ -5,11 +5,12 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Checkbox from './Checkbox/Checkbox'
 import useFilters from './useFilters'
+import { useProductsCatalogue } from '../ProductsCatalogueProvider'
 
-export default function Filters({categoriesFilter , brandsFilter }) {
-  const pathname = usePathname()
+export default function Filters({categoriesFilter , brandsFilter}) {
+  const pathname = usePathname()  
   const {isFilterBrand , isFilterCategory , handleShowFilter} = useFilters()
-  
+
   return (
     <>
         <div className=''>
@@ -44,10 +45,13 @@ export default function Filters({categoriesFilter , brandsFilter }) {
             </button>
             {isFilterBrand &&
                 <ul className='font-light ms-4 mt-4 flex flex-col gap-2 origin-top animate-slideDown'>
-                <li><Checkbox label='Apple' /></li>
-                <li><Checkbox label='Asus' /></li>
-                <li><Checkbox label='Samsung' /></li>
-                <li><Checkbox label='LG' /></li>
+                    {
+                        brandsFilter.map((brand)=>{
+                            return <li><Checkbox label={brand} /></li>
+
+                        })
+                    }
+
                 </ul>
             }                   
         </div>

@@ -13,7 +13,19 @@ export default {
             name: 'title',
             title : 'Title',
             type : 'string'
+        },
+        {
+            name: 'brands',
+            title : 'Brands under this category',
+            type : 'array',
+            of : [
+                {
+                    type : 'reference',
+                    to : [{type:'brand'}]
+                }
+            ]
         }
+
     ]
 
 }
