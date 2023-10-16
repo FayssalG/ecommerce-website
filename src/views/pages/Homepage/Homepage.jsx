@@ -44,7 +44,7 @@ function Homepage({categories , productsPerCategory , primaryBanner ,secondaryBa
                 </div>
 
                 <div className='w-1/2' >
-                    <Image className='object-contain' src={urlForImage(primaryBanner.image).url()} width="400" height="400"></Image>
+                    <Image className='object-contain' src={urlForImage(primaryBanner.image).url()} alt='' width="400" height="400"></Image>
                 </div>
               </div>
               {
@@ -63,7 +63,7 @@ function Homepage({categories , productsPerCategory , primaryBanner ,secondaryBa
         
                       </div>
                       <div className='w-[120px] flex items-center'>
-                        <Image className='object-contain' src={urlForImage(banner.image).url()} width="200" height="200"></Image>
+                        <Image className='object-contain' src={urlForImage(banner.image).url()} alt='' width="200" height="200"></Image>
                       </div>
                       <Link className='absolute h-full w-full top-0 left-0' href={banner.slug}></Link>
                     </div>

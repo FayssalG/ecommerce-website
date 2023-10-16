@@ -57,11 +57,11 @@ export default function ProductsCatalogueProvider({children , products }){
             default :
                 return 
         }    
-    },[])
+    },[sortBy])
 
     useEffect(()=>{
         sortProducts()
-    },[sortBy])
+    },[ sortProducts])
 
     //////
 
@@ -102,11 +102,11 @@ export default function ProductsCatalogueProvider({children , products }){
             })
         }
        
-    },[])
+    },[currentPage])
 
     useEffect(()=>{
         if(currentPage != 1) getMoreProducts()
-    },[currentPage])
+    },[getMoreProducts])
 
     //Change checked brands
 
@@ -146,11 +146,11 @@ export default function ProductsCatalogueProvider({children , products }){
             })
         }
         
-    },[])
+    },[checkedBrands])
 
     useEffect(()=>{
         getFilteredProducts()
-    },[checkedBrands])
+    },[checkedBrands , getFilteredProducts])
 
     const filteredProductsList = useMemo(()=>{
         return productsList

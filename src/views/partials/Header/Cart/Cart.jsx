@@ -38,7 +38,7 @@ export default function Cart() {
                           <li key={index} className='border-b-2 border-slate-100 pb-4'>
                             <div className='flex  gap-4'>
                                 <div className='w-1/2 '>
-                                  <Image className='mx-auto w-36 h-36 object-contain' src={urlForImage(item.image[0]).url()} width="200" height="200"></Image>
+                                  <Image className='mx-auto w-36 h-36 object-contain' src={urlForImage(item.image[0]).url()} alt={item.title} width="200" height="200"></Image>
                                 </div>
                       
                                 <div className='w-1/2'>
