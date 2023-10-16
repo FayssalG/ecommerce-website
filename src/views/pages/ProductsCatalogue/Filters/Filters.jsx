@@ -8,7 +8,7 @@ import useFilters from './useFilters'
 import { useProductsCatalogue } from '../ProductsCatalogueProvider'
 
 export default function Filters({categoriesFilter , brandsFilter}) {
-  const pathname = usePathname()  
+  const pathname = usePathname()
   const {isFilterBrand , isFilterCategory , handleShowFilter} = useFilters()
 
   return (
@@ -19,14 +19,14 @@ export default function Filters({categoriesFilter , brandsFilter}) {
             </button>
             {isFilterCategory &&
                 <ul   className='font-light ms-4 mt-4 flex flex-col gap-2 origin-top '>
+                    
                     {
                         categoriesFilter.map((category,index)=>{
-                            let newPathname = pathname                            
-                            if(newPathname=='/products') newPathname = '/products/' 
-                            let isPath = newPathname == '/products/'+category.name
+                            //ignore the extra forward slash / if it exist
+                            let isPath = category.route.match(new RegExp(`^${pathname}[\/]?$`,'g'))  
                             return (
                             <li key={index}>
-                                <Link className={isPath ? 'text-orange-500' : ''} href={'/products/'+category.name+category.withParams} >{category.title}</Link>
+                                <Link className={isPath ? 'text-orange-500' : ''} href={category.route+category.params} >{category.title}</Link>
                             </li>
                             )
                         })                            

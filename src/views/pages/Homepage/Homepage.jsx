@@ -1,14 +1,16 @@
+'use client'
 import React from 'react'
 import DefaultLayout from '../../DefaultLayout'
 
 import {SlArrowRight} from 'react-icons/sl'
 import {FaTruckFast} from 'react-icons/fa6'
 import Link from 'next/link'
+import OneProduct from '../ProductsCatalogue/ProductsList/OneProduct/OneProduct'
+import { urlForImage } from '../../../../sanity/lib/image'
 
 
-function Homepage({categories}) {
-  console.log(categories)
-  
+function Homepage({categories , productsPerCategory , primaryBanner ,secondaryBanners}) {
+
   return (
     <DefaultLayout>
       <div className=''>
@@ -20,84 +22,55 @@ function Homepage({categories}) {
               <ul className='flex gap-5 flex-col md:flex-row'>
                 {
                   categories.map((category)=>{
-                    return <li className='text-slate-500'><Link href={'/products/'+category.name}>{category.title}</Link></li>
+                    if(category.route == '/products/') return
+                    return <li className='text-slate-500'><Link href={category.route}>{category.title}</Link></li>
                   })
                 }              
               </ul>
             </nav>
           </div>
-          {/* <div className='h-96 bg-slate-200 w-1/4'>
-              <nav>
-                <ul className='text-gray-500 p-4  '>
-                  {
-                    [1,2,2,2].map(()=>{
-                      return (
-                        <li className=' my-4 '>
-                          <a href='#' className='flex items-center justify-between'>
-                            Cell phones
-                            <SlArrowRight/>
-                          </a>
-                        </li>
-                      )
-                    })
-                  }
-                </ul>
-              </nav>
-          </div>
-          */}
           
           {/* Hero Products */}
           <div className='grid grid-cols-1 gap-2 mt-4 min-h-[400px] md:grid-cols-3'>
 
-              <div className='bg-slate-100  flex  items-center md:row-span-2 md:col-span-2'>
+              <div className='shadow  flex  items-center md:row-span-2 md:col-span-2'>
                 <div className='w-1/2 flex flex-col justify-center gap-2 p-5 '>
                   <p className='text-sm text-orange-500 font-bold'>Deals of the day</p>
-                  <h2 className='text-2xl font-bold '>Xbox Elite Wireless Controller Series 2</h2>                  
+                  <h2 className='text-2xl font-bold '>{primaryBanner.title}</h2>                  
                   <p className='text-sm text-gray-500 mt-4'>
-                    The Xbox Elite Wireless Controller Series 2 features over 30 ways to play like a pro, including adjustable-tension thumbsticks 
+                    {primaryBanner.smallText}
                   </p>
-                  <button className='bg-cyan-500 w-fit p-2 px-4 text-white text-sm mt-4 '>SHOP NOW</button>
+                  <Link href={primaryBanner.slug} className='bg-cyan-500 w-fit p-2 px-4 text-white text-sm mt-4 '>SHOP NOW</Link>
                 </div>
 
                 <div className='w-1/2' >
-                    <img className='object-fit' src='https://resource.logitech.com/content/dam/gaming/en/products/g335/g335-black-gallery-1.png'></img>
+                    <img className='object-contain' src={urlForImage(primaryBanner.image)}></img>
                 </div>
               </div>
-
-              <div className='bg-cyan-100 flex'>
-                <div className='w-1/2 h-full flex flex-col  justify-around ps-5 '>
-                    <h2 className='text-lg font-bold '>JBL Music Speaker</h2>
-                    <div className=''>
-                      <p className='text-slate-500 text-sm '>
-                        Weekend Discount
-                      </p>  
-                      <span className='font-bold text-lg text-orange-500 me-2'>$139.99</span>
-                      <span className='text-sm text-gray-500 line-through'>$179.99</span>
+              {
+                secondaryBanners.map((banner)=>{
+                  return(
+                    <div className='relative shadow flex justify-around min-h-[220px] px-2'>
+                      <div className='w-1/2 h-full flex flex-col  justify-around ps-2 '>
+                          <h2 className='text-sm font-bold '>{banner.title}</h2>
+                          <div className=''>
+                            <p className='text-slate-500 text-sm '>
+                              Weekend Discount
+                            </p>  
+                            <span className='font-bold text-lg text-orange-500 me-2'>${banner.price}</span>
+                            <span className='text-sm text-gray-500 line-through'>${banner.oldPrice}</span>
+                          </div>
+        
+                      </div>
+                      <div className='w-[120px] flex items-center'>
+                        <img className='object-contain' src={urlForImage(banner.image)}></img>
+                      </div>
+                      <Link className='absolute h-full w-full top-0 left-0' href={banner.slug}></Link>
                     </div>
-  
-                </div>
-                <div className='w-1/2'>
-                  <img className='object-fit' src='https://www.pngmart.com/files/15/JBL-Audio-Speakers-Download-PNG-Image.png'></img>
-                </div>
-              </div>
-              
-              <div className='bg-slate-100 flex'>
-                <div className='w-1/2 h-full flex flex-col justify-around ps-5 '>
-                    <h2 className='text-lg font-bold '>Apple AirPods Pro</h2>
-                    <div >
-                      <p className='text-slate-500 text-sm '>
-                        Weekend Discount
-                      </p>  
-                      <span className='font-bold text-lg text-orange-500 me-2'>$139.99</span>
-                      <span className='text-sm text-gray-500 line-through'>$179.99</span>
-                    </div>
-
-                </div>
-                <div className='w-1/2'>
-                  <img className='object-fit' src='https://assets.stickpng.com/images/60b79e8771a1fd000411f6be.png'></img>
-                </div>
-              </div>
-              
+                  )    
+                })
+              }
+                           
           </div>
         
         </div>
@@ -138,14 +111,15 @@ function Homepage({categories}) {
         </div>
               
         
-        {/* Highlighted  products section*/}
+        {/* Highlighted  products section */}
+        {/* 
         <div className='mt-12 '>
           <div className='grid grid-cols-1 gap-4 min-h-[500px] md:grid-cols-3'>
 
-            {/* Deal of the day product */}
+            {/* Deal of the day product *
             <div className='bg-gray-100 flex flex-col gap-4 p-4 py-10 md:row-span-2 md:col-span-2 md:flex-row'>
                 <div className='bg-green-500 min-h-[200px]  md:w-1/2 '>
-                    {/* Image here */}
+                    {/* Image here 
                 </div>
                 
                 <div className='mt-6 md:w-1/2 '>
@@ -198,46 +172,32 @@ function Homepage({categories}) {
         
           </div>
         </div>
-
+      */}
         
         {/* Some Products */}
-        
-        <div className='mt-12'>
-          <div className='flex items-center gap-4 '>
-            <h2 className='font-bold text-xl py-4 '>Computers & accessories</h2>
-            <a href='#' className='text-orange-500 font-light '>show more</a>
-          </div>
-          <div className='grid grid-cols-1 p-4 min-h-[250px] [&>div]:min-h-[220px] bg-slate-100 gap-4 md:grid-cols-4'>
-            <div className='bg-red-500 '></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            
-          </div>
-        </div>
-
-                <div className='mt-12'>
-          <div className='flex items-center gap-4 '>
-            <h2 className='font-bold text-xl py-4 '>Cell phones</h2>
-            <a href='#' className='text-orange-500 font-light '>show more</a>
-          </div>
-          <div className='grid grid-cols-1 p-4 min-h-[250px] [&>div]:min-h-[220px] bg-slate-100 gap-4 md:grid-cols-4'>
-            <div className='bg-red-500 '></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            <div className='bg-red-500'></div>
-            
-          </div>
-        </div>
-          
+        {
+          categories.map((category)=>{
+            if(category.name == '') return
+            return(
+                <div className='mt-12 p-4 shadow'>
+                  <div className='flex items-center gap-4 '>
+                    <h2 className='font-bold text-xl py-2 '>{category.title}</h2>
+                    <a href={'/products/'+category.name} className='text-orange-500 font-light '>show more</a>
+                  </div>
+                  <div className='grid grid-cols-1 py-2 min-h-[250px] [&>div]:min-h-[220px] gap-4 md:grid-cols-4'>
+                    {
+                      productsPerCategory.map((product)=>{
+                        if(product.category.name != category.name ) return
+                        return (
+                            <OneProduct item={product}/>
+                        )
+                      })
+                    }  
+                  </div>
+                </div>
+              )      
+          })
+        }
 
       </div>
         

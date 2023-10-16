@@ -8,7 +8,7 @@ async function getProducts(q , page , sortBy , brandsArray){
     console.log({brandsArray})
     let query = `*[_type == "product" `
   
-    if(q) query =  `&& [title,brand] match "${q}*" `
+    if(q) query +=  ` && [title,brand] match "${q}*" `
     if(brandsArray && brandsArray.length>0){
       query += ` && brand->name in [${brandsArray.map((b)=>`"${b}"`).join(',')}] `
     } 
@@ -29,7 +29,7 @@ async function getProductsByCategory(category , q , page , sortBy , brandsArray)
     let query = `*[_type == "category" && name=="${category}"]{
       "products" : *[_type=="product" && references(^._id)
     `
-    if(q!= null) query += `&& [title,brand] match "${q}*"`     
+    if(q!= null) query += ` && [title,brand] match "${q}*"`     
     if(brandsArray && brandsArray.length>0){
       query += `&& brand->name in [${brandsArray.map((b)=>`"${b}"`).join(',')}] `
     } 
@@ -54,14 +54,15 @@ async function getProduct(slug){
     const [product] = await client.fetch(query)
 
     return product
-  }
+}
+
 
 async function checkCategory(category){
     const query = `*[_type == "category" && name=="${category}"]`
     const [cat] = await client.fetch(query)
     if(!cat) return false
     return cat
-  }
+}
   
   
 async function getCategories(q){
@@ -69,8 +70,8 @@ async function getCategories(q){
   let categories = await client.fetch(query)
   categories.unshift({name:'', title:'All'})
   categories = categories.map((cat)=>{
-    return {...cat , withParams: (q ? '?q='+q : '')} 
-    })
+    return {...cat , params: (q ? '?q='+q : '') , route:'/products/'+cat.name} 
+  })
   return  categories
 }
 
