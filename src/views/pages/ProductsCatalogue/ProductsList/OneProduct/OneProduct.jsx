@@ -1,4 +1,3 @@
-'use client'
 
 import React from 'react'
 import { BsFillCartPlusFill } from 'react-icons/bs'
@@ -7,16 +6,17 @@ import Link from 'next/link'
 import { useCartContext } from '@/views/providers/CartProvider'
 
 import {urlForImage} from '../../../../../../sanity/lib/image'
+import Image from 'next/image'
 
 
 export default function OneProduct({item}) {
   const {dispatch} = useCartContext() 
-
+  
   return (
     <>
       <div className='relative hover:scale-[1.05] focus:scale-[1.05] px-2 transition-transform'>
         <div className=' flex justify-center  px-2 py-4'>
-          <img className=' w-56 h-56 object-contain' src={urlForImage(item.image[0])}/>
+          <Image className=' w-56 h-56 object-contain' alt={item.title}  src={urlForImage(item.image[0]).url()} width="200" height="200"/>
         </div>
 
         <div className='mt-2 flex items-start justify-between'>

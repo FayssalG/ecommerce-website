@@ -9,7 +9,7 @@ provides sorting and filtering functions to useSort , useFilters
 
 import { getProducts, getProductsByCategory , getBrands} from "@/lib/sanity";
 import { useParams, useSearchParams } from "next/navigation";
-import { useState , useContext , createContext, useEffect, useMemo } from "react";
+import { useState , useContext , createContext, useEffect, useMemo, useCallback } from "react";
 
 
 const ProductsCatalogueContext = createContext()
@@ -36,15 +36,12 @@ export default function ProductsCatalogueProvider({children , products }){
 
     
     //Change SortBy
-    useEffect(()=>{
-        sortProducts()
-    },[sortBy])
 
     const handleChangeSortBy = (e)=>{
         setSortBy(e.target.value)
     }
 
-    function sortProducts(){
+    const sortProducts = useCallback(()=>{
         if(!sortBy) return
         const newProductsList = [...productsList]
         switch(sortBy){
@@ -60,22 +57,23 @@ export default function ProductsCatalogueProvider({children , products }){
             default :
                 return 
         }    
-    }
+    },[])
+
+    useEffect(()=>{
+        sortProducts()
+    },[sortBy])
 
     //////
 
     
     //get more Products
-    useEffect(()=>{
-        if(currentPage != 1) getMoreProducts()
-    },[currentPage])
 
     const handleChangeCurrentPage = ()=>{
         setCurrentPage(prev=>prev+1)
     }
 
     
-    function getMoreProducts(){
+    const getMoreProducts = useCallback(()=>{
         const q = searchParams.get('q')
         setLoading(true)
         if(category){
@@ -104,8 +102,11 @@ export default function ProductsCatalogueProvider({children , products }){
             })
         }
        
-    }
+    },[])
 
+    useEffect(()=>{
+        if(currentPage != 1) getMoreProducts()
+    },[currentPage])
 
     //Change checked brands
 
@@ -119,7 +120,7 @@ export default function ProductsCatalogueProvider({children , products }){
 
     
     //Filter products
-    function getFilteredProducts(){
+    const  getFilteredProducts = useCallback(()=>{
         const q = searchParams.get('q')
         setLoading(true)
         if(category){
@@ -145,7 +146,7 @@ export default function ProductsCatalogueProvider({children , products }){
             })
         }
         
-    }
+    },[])
 
     useEffect(()=>{
         getFilteredProducts()

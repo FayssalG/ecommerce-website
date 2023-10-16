@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import DefaultLayout from '../../DefaultLayout'
-
+import Image from 'next/image'
 import {SlArrowRight} from 'react-icons/sl'
 import {FaTruckFast} from 'react-icons/fa6'
 import Link from 'next/link'
@@ -21,9 +21,9 @@ function Homepage({categories , productsPerCategory , primaryBanner ,secondaryBa
             <nav >
               <ul className='flex gap-5 flex-col md:flex-row'>
                 {
-                  categories.map((category)=>{
+                  categories.map((category , index)=>{
                     if(category.route == '/products/') return
-                    return <li className='text-slate-500'><Link href={category.route}>{category.title}</Link></li>
+                    return <li key={index} className='text-slate-500'><Link href={category.route}>{category.title}</Link></li>
                   })
                 }              
               </ul>
@@ -44,13 +44,13 @@ function Homepage({categories , productsPerCategory , primaryBanner ,secondaryBa
                 </div>
 
                 <div className='w-1/2' >
-                    <img className='object-contain' src={urlForImage(primaryBanner.image)}></img>
+                    <Image className='object-contain' src={urlForImage(primaryBanner.image).url()} width="400" height="400"></Image>
                 </div>
               </div>
               {
-                secondaryBanners.map((banner)=>{
+                secondaryBanners.map((banner , index)=>{
                   return(
-                    <div className='relative shadow flex justify-around min-h-[220px] px-2'>
+                    <div key={index} className='relative shadow flex justify-around min-h-[220px] px-2'>
                       <div className='w-1/2 h-full flex flex-col  justify-around ps-2 '>
                           <h2 className='text-sm font-bold '>{banner.title}</h2>
                           <div className=''>
@@ -63,7 +63,7 @@ function Homepage({categories , productsPerCategory , primaryBanner ,secondaryBa
         
                       </div>
                       <div className='w-[120px] flex items-center'>
-                        <img className='object-contain' src={urlForImage(banner.image)}></img>
+                        <Image className='object-contain' src={urlForImage(banner.image).url()} width="200" height="200"></Image>
                       </div>
                       <Link className='absolute h-full w-full top-0 left-0' href={banner.slug}></Link>
                     </div>
@@ -176,20 +176,20 @@ function Homepage({categories , productsPerCategory , primaryBanner ,secondaryBa
         
         {/* Some Products */}
         {
-          categories.map((category)=>{
+          categories.map((category , index)=>{
             if(category.name == '') return
             return(
-                <div className='mt-12 p-4 shadow'>
+                <div key={index} className='mt-12 p-4 shadow'>
                   <div className='flex items-center gap-4 '>
                     <h2 className='font-bold text-xl py-2 '>{category.title}</h2>
                     <a href={'/products/'+category.name} className='text-orange-500 font-light '>show more</a>
                   </div>
                   <div className='grid grid-cols-1 py-2 min-h-[250px] [&>div]:min-h-[220px] gap-4 md:grid-cols-4'>
                     {
-                      productsPerCategory.map((product)=>{
+                      productsPerCategory.map((product , index)=>{
                         if(product.category.name != category.name ) return
                         return (
-                            <OneProduct item={product}/>
+                            <OneProduct key={index} item={product}/>
                         )
                       })
                     }  

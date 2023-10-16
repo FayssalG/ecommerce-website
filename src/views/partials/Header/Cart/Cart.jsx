@@ -3,7 +3,7 @@
 
 import React from 'react'
 import {BsCart3 , BsTrash} from 'react-icons/bs'
-
+import Image from 'next/image'
 import { urlForImage } from '../../../../../sanity/lib/image'
 import useCart from './useCart'
 
@@ -33,12 +33,12 @@ export default function Cart() {
               <ul className='flex flex-col gap-2 p-4 py-5 overflow-y-auto min-h-[100px] max-h-[400px]'>
                 {cartItems.length == 0 && <p className='text-slate-500 text-center mt-auto'>Cart is Empty</p> } 
                 { 
-                  cartItems.map((item)=>{
+                  cartItems.map((item , index)=>{
                       return(
-                          <li className='border-b-2 border-slate-100 pb-4'>
-                            <div className='flex  '>
+                          <li key={index} className='border-b-2 border-slate-100 pb-4'>
+                            <div className='flex  gap-4'>
                                 <div className='w-1/2 '>
-                                  <img className='mx-auto w-36 h-36 object-contain' src={urlForImage(item.image[0])} ></img>
+                                  <Image className='mx-auto w-36 h-36 object-contain' src={urlForImage(item.image[0]).url()} width="200" height="200"></Image>
                                 </div>
                       
                                 <div className='w-1/2'>

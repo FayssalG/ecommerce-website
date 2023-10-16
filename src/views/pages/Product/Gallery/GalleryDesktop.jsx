@@ -2,6 +2,7 @@ import React from 'react'
 import {SlArrowRight} from 'react-icons/sl'
 import {SlArrowLeft} from 'react-icons/sl'
 import useGallery from './useGallery'
+import Image from 'next/image'
 
 export default function GalleryDesktop({images}) {
     const {slideRef , scrollLeft , scrollRight , showScrollBtn ,activeImgIndex , setActiveImgIndex , changeActiveImg} = useGallery(images)
@@ -9,7 +10,7 @@ export default function GalleryDesktop({images}) {
     return (
         <>
         <div className='h-[400px]  rounded-xl '>
-            <img key={activeImgIndex} className='mx-auto h-full object-contain animate-fadeIn ' src={images[activeImgIndex]} alt="" />
+            <Image key={activeImgIndex} className='mx-auto h-full object-contain animate-fadeIn ' src={images[activeImgIndex].url()} width="800" height="800" alt="" />
         </div>
         <div className='relative'>
             {
@@ -23,7 +24,7 @@ export default function GalleryDesktop({images}) {
 
                         return (
                             <button style={{border : images[activeImgIndex]==img ? 'solid 2px orange' : null}}  onClick={()=>setActiveImgIndex(index)} key={index} className='w-32 rounded '> 
-                                <img  className=' mx-auto h-full object-cover' src={img} alt="" />
+                                <Image  className=' mx-auto h-full object-contain' src={img.url()} width="200" height="200" alt="" />
                             </button>
                         )
                     })

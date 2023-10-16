@@ -46,8 +46,8 @@ export default function Filters({categoriesFilter , brandsFilter}) {
             {isFilterBrand &&
                 <ul className='font-light ms-4 mt-4 flex flex-col gap-2 origin-top animate-slideDown'>
                     {
-                        brandsFilter.map((brand)=>{
-                            return <li><Checkbox label={brand} /></li>
+                        brandsFilter.map((brand ,index)=>{
+                            return <li key={index}><Checkbox label={brand} /></li>
 
                         })
                     }

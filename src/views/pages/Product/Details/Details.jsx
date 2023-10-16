@@ -17,11 +17,11 @@ export default function Details() {
     <>
         <h2 className='text-xl font-light'>Details</h2>
         
-        <div  >
+        <div >
             <p ref={paragraphRef} style={isOpen ? null : paragraphStyles} className='mt-4  font-light text-slate-500'>
-                Une manière inédite et magique d’interagir avec votre iPhone. Une fonctionnalité de sécurité essentielle conçue pour sauver des vies. Un appareil photo 48 Mpx innovant pour un niveau de détail à couper le souffle. Et toute la puissance de la puce de smartphone ultime.
+                Une manière inédite et magique d interagir avec votre iPhone. Une fonctionnalité de sécurité essentielle conçue pour sauver des vies. Un appareil photo 48 Mpx innovant pour un niveau de détail à couper le souffle. Et toute la puissance de la puce de smartphone ultime.
 
-                Découvrez Dynamic Island, une innovation signée Apple, conjuguant matériel et logiciel d’une manière totalement inédite. Elle vous présente la musique que vous écoutez, votre appel FaceTime en cours, et tellement plus, sans jamais interrompre ce que vous faites.
+                Découvrez Dynamic Island, une innovation signée Apple, conjuguant matériel et logiciel d une manière totalement inédite. Elle vous présente la musique que vous écoutez, votre appel FaceTime en cours, et tellement plus, sans jamais interrompre ce que vous faites.
                 COULEUR:
 
                 Violet Intense (Deep Purple).

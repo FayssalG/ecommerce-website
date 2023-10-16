@@ -2,6 +2,7 @@ import React from 'react'
 import {SlArrowRight} from 'react-icons/sl'
 import {SlArrowLeft} from 'react-icons/sl'
 import useGallery from './useGallery'
+import Image from 'next/image'
 
 export default function GalleryMobile({images}) {
     const {slideRef , scrollLeft , scrollRight , showScrollBtn } = useGallery()
@@ -17,7 +18,7 @@ export default function GalleryMobile({images}) {
             <div ref={slideRef} className='mt-4 h-[400px]  flex gap-2  overflow-hidden [&>div]:shrink-0'>
                 {
                     images.map((img)=>{
-                        return <div className='w-full   rounded-xl'> <img className='mx-auto h-full object-contain' src={img} alt="" /></div>
+                        return <div className='w-full   rounded-xl'> <Image className='mx-auto h-full object-contain' src={img.url()} width="500" height="500"  /></div>
                         
                     })
                 }
