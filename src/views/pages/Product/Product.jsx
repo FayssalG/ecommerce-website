@@ -41,7 +41,7 @@ export default function Product({product}) {
                                 <li> <button> <AiOutlineStar/> </button> </li>
                                 <li> <button> <AiOutlineStar/> </button> </li>
                                 <li> <button> <AiOutlineStar/> </button> </li>
-                                <li className='ms-2 text-sm text-slate-400'>(500)</li>
+                                {/* <li className='ms-2 text-sm text-slate-400'>(15)</li> */}
                             </ul>
                         </div>
                         {/* Price */}

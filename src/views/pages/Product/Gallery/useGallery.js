@@ -2,14 +2,6 @@ import { useEffect, useRef , useState } from "react";
 
 export default function useGallery(){
     useEffect(()=>{
-        setIsMobileView(()=>!window.matchMedia('(max-width:769px)'))
-        const mediaQuery = window.matchMedia('(max-width: 769px)')
-        mediaQuery.addEventListener('change' , (e)=>{
-            if(e.matches) setIsMobileView(true)
-            else setIsMobileView(false)       
-        })
-
-
         if(slideRef.current && (slideRef.current.clientWidth < slideRef.current.scrollWidth)){
             setShowScrollBtn({right:true , left:false})
         }
@@ -17,8 +9,13 @@ export default function useGallery(){
 
     const slideRef = useRef(null)
     const [showScrollBtn , setShowScrollBtn] = useState({right:false , left:false})
-    const [isMobileView  , setIsMobileView] = useState(false)
-    const [activeImgIndex , setActiveImgIndex] = useState(0)
+    
+    const [swiper , setSwiper] = useState(null)
+    const [activeThumbnail , setActiveThumbnail] = useState(0)
+    const slideTo = (index)=>{
+        swiper?.slideTo(index)
+        setActiveThumbnail(index)
+    }
 
     function scrollRight(){
       if(slideRef.current){
@@ -32,7 +29,6 @@ export default function useGallery(){
             setShowScrollBtn((prev)=>{return {...prev , right:false}})
           }
           setShowScrollBtn((prev)=>{return {...prev , left:true}})
-          setActiveImgIndex(prev=>prev+1)
       }
     }
   
@@ -50,12 +46,11 @@ export default function useGallery(){
         }
 
         setShowScrollBtn((prev)=>{return {...prev , right:true} })
-        setActiveImgIndex(prev=>prev-1)
       }
     }
   
 
     return{
-        slideRef, scrollLeft , scrollRight, activeImgIndex , setActiveImgIndex , showScrollBtn , isMobileView
-    }
+        slideRef, scrollLeft , scrollRight , showScrollBtn 
+        ,setSwiper, activeThumbnail,slideTo    }
 }
