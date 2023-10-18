@@ -10,6 +10,7 @@ import Gallery from './Gallery/Gallery'
 import Quantity from './Quantity/Quantity'
 import Buttons from './Buttons/Buttons'
 import ProductProvider from './ProductProvider'
+import Specs from './Specs/Specs'
 
 
 export default function Product({product}) {
@@ -64,15 +65,18 @@ export default function Product({product}) {
 
 
 
-                {/* Details (Description and Specs) */}
+                {/* Details (Descriptio) */}
                 <div className='bg-slate-100 py-2 px-4 mt-10 rounded lg:me-20'>
                     <Details/>
                 </div>
 
+                {/* Specs */}
+                <Specs specs={product?.specs}/>
+
                 {/* Customers reviews */}
-                <div className='bg-slate-100 py-2 px-4 mt-4 rounded lg:me-20'>
+                {/* <div className='bg-slate-100 py-2 px-4 mt-4 rounded lg:me-20'>
                     <h2 className='text-xl font-light'>Reviews</h2>                
-                </div>
+                </div> */}
             </div>
 
         </ProductProvider>

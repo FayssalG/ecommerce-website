@@ -52,6 +52,27 @@ export default {
             to : [
                 {type : 'category'}
             ]
+        },
+
+        {
+            name: 'specs',
+            title : 'Specifications',
+            type : 'array',
+            of : [{
+                    type : 'object',
+                    fields:[
+                        {
+                            name: 'key',
+                            title: 'Name of the specification',
+                            type: 'string'
+                          }, 
+                          {
+                            name: 'value',
+                            title: 'Value of the specification',
+                            type: 'string'
+                          },
+                    ]
+                }]
         }
     ]
 

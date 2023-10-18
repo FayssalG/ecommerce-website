@@ -8,9 +8,8 @@ export default function useSearchbar(){
 
     function handleChangeQuery(e){
         e.preventDefault()
-        console.log('test')
         if(inputRef.current && selectRef.current){
-            if(inputRef.current.value==null) return
+            if(inputRef.current.value=='') return
             if(selectRef.current.value==='') router.push('/products?q='+inputRef.current.value)        
             else router.push(`/products/${selectRef.current.value}?q=${inputRef.current.value}`)        
         }

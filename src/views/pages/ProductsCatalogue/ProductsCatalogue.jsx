@@ -16,7 +16,7 @@ export default function ProductsCatalogue({products,categoriesFilter, brandsFilt
 
         <div className='mt-10 mb-20'>
             {/* sorting options */}
-            <div className='flex items-center gap-4 justify-between flex-wrap'>
+            <div className='flex items-center gap-4 gap-y-10 justify-between flex-wrap '>
               <div>
                 <h1 className='font-bold  tracking-wider border-l-8 border-cyan-500 ps-2 text-2xl'>{categoryTitle ? categoryTitle : 'All'}</h1>
               </div>
