@@ -83,7 +83,7 @@ export default function ProductsCatalogueProvider({children , products }){
                 setShowMoreBtn(false)
                 return
             }  
-            const newProductsList= [...productsList , ...moreProducts]
+            const newProductsList= [...products , ...moreProducts]
             switch(sortBy){
                 case 'price asc':
                     newProductsList.sort((a , b)=>a.price - b.price)
@@ -98,7 +98,6 @@ export default function ProductsCatalogueProvider({children , products }){
         })
         .catch((e)=>{
             console.log(e)
-            setLoading(false)
         })
         .finally(()=>{
             setLoading(false)
@@ -120,33 +119,21 @@ export default function ProductsCatalogueProvider({children , products }){
     }
 
     
-    //Filter productsList
+    //Filter products
     const  getFilteredProducts = useCallback(()=>{
         const q = searchParams.get('q')
         setLoading(true)
-        if(category){
-            getProductsByCategory(category, q , null , sortBy , checkedBrands)
-            .then((newProducts)=>{
-                setProductsList(newProducts)
-                setLoading(false)
-            })
-            .catch((e)=>{
-                console.log(e)
-                setLoading(false)
-            })
-        }
-        else{
-            getProducts(q , null , sortBy , checkedBrands)
-            .then((newProducts)=>{
-                setProductsList(newProducts)
-                setLoading(false)
-            })
-            .catch((e)=>{
-                console.log(e)
-                setLoading(false)
-            })
-        }
-        
+        getProducts(category, q , null , sortBy , checkedBrands)
+        .then((newProducts)=>{
+            setProductsList(newProducts)
+        })
+        .catch((e)=>{
+            console.log(e)
+        })
+        .finally(()=>{
+            setLoading(false)
+        })
+    
     },[checkedBrands])
 
     useEffect(()=>{
