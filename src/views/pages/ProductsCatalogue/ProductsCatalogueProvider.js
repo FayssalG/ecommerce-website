@@ -124,17 +124,29 @@ export default function ProductsCatalogueProvider({children , products }){
     const  getFilteredProducts = useCallback(()=>{
         const q = searchParams.get('q')
         setLoading(true)
-        getProducts(category, q , null , sortBy , checkedBrands)
-        .then((newProducts)=>{
-            setProductsList(newProducts)
-        })
-        .catch((e)=>{
-            console.log(e)
-        })
-        .finally(()=>{
-            setLoading(false)
-        })
-    
+        if(category){
+            getProductsByCategory(category, q , null , sortBy , checkedBrands)
+            .then((newProducts)=>{
+                setProductsList(newProducts)
+                setLoading(false)
+            })
+            .catch((e)=>{
+                console.log(e)
+                setLoading(false)
+            })
+        }
+        else{
+            getProducts(q , null , sortBy , checkedBrands)
+            .then((newProducts)=>{
+                setProductsList(newProducts)
+                setLoading(false)
+            })
+            .catch((e)=>{
+                console.log(e)
+                setLoading(false)
+            })
+        }
+        
     },[checkedBrands])
 
     useEffect(()=>{
