@@ -1,10 +1,10 @@
 'use client'
 //contains state and helper functions related to the Details component (mainly for the read more functionality)
 import React from 'react'
-import useDetails from './useDetails'
+import useDescription from './useDescription'
 
-export default function Details() {
-  const {isOpen , setIsOpen , showReadMoreBtn, setShowReadMoreBtn , paragraphRef} = useDetails()
+export default function Description() {
+  const {isOpen , setIsOpen , showReadMoreBtn, paragraphRef} = useDescription()
   
   const paragraphStyles = {
     WebkitLineClamp: 4,
@@ -15,11 +15,11 @@ export default function Details() {
 
   return (
     <>
-        <h2 className='text-xl font-light'>Details</h2>
+        <h2 className='text-xl font-light'>Description</h2>
         
         <div >
             <p ref={paragraphRef} style={isOpen ? null : paragraphStyles} className='mt-4  font-light text-slate-500'>
-                Date de sortie 16/09/2022
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos qui praesentium numquam cumque aliquid enim vel rerum temporibus totam quidem assumenda natus nostrum eum magnam dolore veritatis, facere architecto adipisci.
             </p>
             {
             showReadMoreBtn &&

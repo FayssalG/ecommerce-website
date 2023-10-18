@@ -9,9 +9,9 @@ export default function Specs({specs}) {
         <table className='mt-5 table-fixed w-full'>
             <tbody className='[&>tr>td]:border-2 [&>tr>td]:p-2'>
                 {
-                    specs.map((spec)=>{
+                    specs.map((spec , index)=>{
                         return(
-                            <tr>
+                            <tr key={index}>
                                 <td className=''>{spec.key}</td>
                                 <td className='font-light'>{spec.value}</td>
                             </tr>

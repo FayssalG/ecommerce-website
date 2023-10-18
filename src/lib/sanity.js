@@ -3,11 +3,12 @@ import {client} from '../../sanity/lib/client'
 
 
 
-async function getProducts(q , page , sortBy , brandsArray){ 
+async function getProducts(category , q , page , sortBy , brandsArray){ 
     let productsPerPage =  6
     console.log({brandsArray})
     let query = `*[_type == "product" `
-  
+    
+    if(category) query+= ` && category->name=="${category}"`
     if(q) query +=  ` && [title,brand] match "${q}*" `
     if(brandsArray && brandsArray.length>0){
       query += ` && brand->name in [${brandsArray.map((b)=>`"${b}"`).join(',')}] `
@@ -23,27 +24,6 @@ async function getProducts(q , page , sortBy , brandsArray){
     return  products
 }
 
-async function getProductsByCategory(category , q , page , sortBy , brandsArray){
-    let productsPerPage = 6
-    
-    let query = `*[_type == "category" && name=="${category}"]{
-      "products" : *[_type=="product" && references(^._id)
-    `
-    if(q!= null) query += ` && [title,brand] match "${q}*"`     
-    if(brandsArray && brandsArray.length>0){
-      query += `&& brand->name in [${brandsArray.map((b)=>`"${b}"`).join(',')}] `
-    } 
-
-    query += `]{...,brand->}`
-
-    if(page) query += `[${(page-1)*productsPerPage}...${page*productsPerPage}]`
-    else query+= `[0...${productsPerPage}]`
-    if(sortBy) query += ` | order(${sortBy})`
-    query+= '}'
-    
-    let data = await client.fetch(query)
-    return  data[0]?.products
-}
 
 
 async function getProduct(slug){
@@ -94,4 +74,4 @@ async function getBrands(category , q ){
   return brands
 
 }
-export {getProducts , getBrands , getProductsByCategory, getProduct  ,getCategories  , checkCategory }
+export {getProducts , getBrands , getProduct  ,getCategories  , checkCategory }
