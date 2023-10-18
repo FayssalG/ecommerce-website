@@ -3,11 +3,8 @@ import CartProvider from '@/views/providers/CartProvider'
 import { notFound } from 'next/navigation'
 
 import React from 'react'
-import {  getCategories , getProductsByCategory ,getBrands, checkCategory} from '@/lib/sanity'
+import {  getCategories , getBrands, checkCategory, getProducts} from '@/lib/sanity'
 import ProductsCatalogue from '@/views/pages/ProductsCatalogue/ProductsCatalogue'
-
-
-
 
 
 
@@ -15,7 +12,7 @@ export default async function ProductsByCategoryPage({ params:{category} , searc
     const categoryObj = await checkCategory(category)
     if(!categoryObj) notFound()
 
-    const productsByCategory = await getProductsByCategory(category , q) ?? []
+    const productsByCategory = await getProducts(category , q) ?? []
     let categories = await getCategories(q)
     let brands = await getBrands(category, q)
 

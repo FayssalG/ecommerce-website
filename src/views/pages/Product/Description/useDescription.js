@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import { useState } from "react"
-export default function useDetails(){
+export default function useDescription(){
     const [isOpen , setIsOpen] = useState(false)
     const [showReadMoreBtn , setShowReadMoreBtn] = useState(false)
     const paragraphRef = useRef(null)

@@ -7,7 +7,7 @@ provides sorting and filtering functions to useSort , useFilters
 
 'use client'
 
-import { getProducts, getProductsByCategory , getBrands} from "@/lib/sanity";
+import { getProducts,getBrands} from "@/lib/sanity";
 import { useParams, useSearchParams } from "next/navigation";
 import { useState , useContext , createContext, useEffect, useMemo, useCallback } from "react";
 
@@ -57,7 +57,7 @@ export default function ProductsCatalogueProvider({children , products }){
             default :
                 return 
         }    
-    },[sortBy])
+    },[sortBy ])
 
     useEffect(()=>{
         sortProducts()
@@ -76,36 +76,37 @@ export default function ProductsCatalogueProvider({children , products }){
     const getMoreProducts = useCallback(()=>{
         const q = searchParams.get('q')
         setLoading(true)
-        if(category){
-            getProductsByCategory(category, q , currentPage , sortBy , checkedBrands)
-            .then((moreProducts)=>{
-                setProductsList((prev)=>[...prev , ...moreProducts])
-                setLoading(false)
-                if(moreProducts.length ==0) setShowMoreBtn(false) 
-            })
-            .catch((e)=>{
-                console.log(e)
-                setLoading(false)
-            })
 
-        }
-        else{
-            getProducts(q , currentPage , sortBy , checkedBrands)
-            .then((moreProducts)=>{
-                setProductsList((prev)=>[...prev , ...moreProducts])
-                setLoading(false)
-                if(moreProducts.length ==0) setShowMoreBtn(false) 
-            })
-            .catch((e)=>{
-                console.log(e)
-                setLoading(false)
-            })
-        }
-       
+        getProducts(category, q , currentPage , sortBy , checkedBrands)
+        .then((moreProducts)=>{
+            if(moreProducts.length ==0){
+                setShowMoreBtn(false)
+                return
+            }  
+            const newProductsList= [...products , ...moreProducts]
+            switch(sortBy){
+                case 'price asc':
+                    newProductsList.sort((a , b)=>a.price - b.price)
+                    break;
+                case 'price desc':
+                    newProductsList.sort((a , b)=>b.price - a.price)
+                    break;
+                default :
+                    break; 
+            }
+            setProductsList(newProductsList)
+        })
+        .catch((e)=>{
+            console.log(e)
+            setLoading(false)
+        })
+        .finally(()=>{
+            setLoading(false)
+        })
     },[currentPage])
 
     useEffect(()=>{
-        if(currentPage != 1) getMoreProducts()
+        if(currentPage > 1) getMoreProducts()
     },[getMoreProducts])
 
     //Change checked brands
@@ -123,29 +124,17 @@ export default function ProductsCatalogueProvider({children , products }){
     const  getFilteredProducts = useCallback(()=>{
         const q = searchParams.get('q')
         setLoading(true)
-        if(category){
-            getProductsByCategory(category, q , null , sortBy , checkedBrands)
-            .then((newProducts)=>{
-                setProductsList(newProducts)
-                setLoading(false)
-            })
-            .catch((e)=>{
-                console.log(e)
-                setLoading(false)
-            })
-        }
-        else{
-            getProducts(q , null , sortBy , checkedBrands)
-            .then((newProducts)=>{
-                setProductsList(newProducts)
-                setLoading(false)
-            })
-            .catch((e)=>{
-                console.log(e)
-                setLoading(false)
-            })
-        }
-        
+        getProducts(category, q , null , sortBy , checkedBrands)
+        .then((newProducts)=>{
+            setProductsList(newProducts)
+        })
+        .catch((e)=>{
+            console.log(e)
+        })
+        .finally(()=>{
+            setLoading(false)
+        })
+    
     },[checkedBrands])
 
     useEffect(()=>{

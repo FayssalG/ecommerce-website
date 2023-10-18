@@ -5,12 +5,12 @@ import { AiFillStar , AiOutlineStar }  from 'react-icons/ai'
 
 import {BsCart3 } from 'react-icons/bs'
 
-import Details from './Details/Details'
 import Gallery from './Gallery/Gallery'
 import Quantity from './Quantity/Quantity'
 import Buttons from './Buttons/Buttons'
 import ProductProvider from './ProductProvider'
 import Specs from './Specs/Specs'
+import Description from './Description/Description'
 
 
 export default function Product({product}) {
@@ -67,7 +67,7 @@ export default function Product({product}) {
 
                 {/* Details (Descriptio) */}
                 <div className='bg-slate-100 py-2 px-4 mt-10 rounded lg:me-20'>
-                    <Details/>
+                    <Description/>
                 </div>
 
                 {/* Specs */}
