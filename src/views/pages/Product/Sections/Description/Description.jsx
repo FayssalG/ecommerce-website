@@ -15,11 +15,12 @@ export default function Description() {
 
   return (
     <>
-        <h2 className='text-xl font-light'>Description</h2>
+        {/* <h2 className='text-xl font-light'>Description</h2> */}
         
         <div >
             <p ref={paragraphRef} style={isOpen ? null : paragraphStyles} className='mt-4  font-light text-slate-500'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos qui praesentium numquam cumque aliquid enim vel rerum temporibus totam quidem assumenda natus nostrum eum magnam dolore veritatis, facere architecto adipisci.
+                
             </p>
             {
             showReadMoreBtn &&

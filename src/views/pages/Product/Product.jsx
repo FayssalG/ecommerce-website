@@ -1,3 +1,4 @@
+
 import DefaultLayout from '@/views/DefaultLayout'
 import React from 'react'
 
@@ -9,13 +10,11 @@ import Gallery from './Gallery/Gallery'
 import Quantity from './Quantity/Quantity'
 import Buttons from './Buttons/Buttons'
 import ProductProvider from './ProductProvider'
-import Specs from './Specs/Specs'
-import Description from './Description/Description'
+
+import Sections from './Sections/Sections'
 
 
 export default function Product({product}) {
-  
- 
   return (
     <DefaultLayout>
         <ProductProvider>
@@ -63,20 +62,11 @@ export default function Product({product}) {
                     </div>
                 </div>
 
-
-
-                {/* Details (Descriptio) */}
-                <div className='bg-slate-100 py-2 px-4 mt-10 rounded lg:me-20'>
-                    <Description/>
+                <div className=' mt-10 rounded   lg:me-20'>
+                    <Sections specs={product?.specs}/>
                 </div>
 
-                {/* Specs */}
-                <Specs specs={product?.specs}/>
-
-                {/* Customers reviews */}
-                {/* <div className='bg-slate-100 py-2 px-4 mt-4 rounded lg:me-20'>
-                    <h2 className='text-xl font-light'>Reviews</h2>                
-                </div> */}
+              
             </div>
 
         </ProductProvider>

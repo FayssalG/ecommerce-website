@@ -3,6 +3,7 @@ import { useContext , createContext , useState , useEffect} from "react"
 import { useCartContext } from "@/views/providers/CartProvider"
 
 const ProductContext = createContext()
+
 export function useProduct(){
     return useContext(ProductContext)
 }
@@ -10,6 +11,7 @@ export function useProduct(){
 export default function ProductProvider({children}){
     const [quantity , setQuantity] = useState(1)    
     const {dispatch } = useCartContext()
+
 
     useEffect(()=>{
         console.log(quantity)
