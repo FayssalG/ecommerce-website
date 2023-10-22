@@ -22,7 +22,7 @@ export default function Cart() {
   
   return (
     <div ref={cartBtnRef} className='flex  gap-4 items-center'> 
-            <button  onClick={handleToggleCart} className={cartItems.length>0 ? 'cart-btn': ''} data-items-num={cartItems.reduce((total,item)=>total+item.quantity , 0)}><BsCart3 size={30}/></button>
+            <button  onClick={handleToggleCart} className={cartItems.length>0 ? 'cart-btn': ''} data-items-num={  cartItems.reduce((total,item)=>total+item.quantity , 0)}><BsCart3 size={30}/></button>
             <div className='&[p]:m-0 '>
               <p className='text-xs text-slate-400'>Total</p>
               <p className='font-bold'>$ {totalAmount}</p>

@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { Fragment } from 'react'
 import useSections from './useSections'
 export default function Sections({description , specs}) {
 
@@ -13,7 +13,7 @@ export default function Sections({description , specs}) {
             {
                 sections.map((section , index)=>{
                     return (
-                    <>   
+                    <Fragment key={index}>   
                         <div >
                             <button
                                 className='text-xl p-2 w-full bg-slate-100 rounded border-b lg:rounded-none lg:bg-transparent'
@@ -26,7 +26,7 @@ export default function Sections({description , specs}) {
                             {section.component}
                         </div>
                        
-                    </>
+                    </Fragment>
                     )
                 })
             }

@@ -5,7 +5,6 @@ import { useCartContext } from '../../../providers/CartProvider'
 
 export default function useCart() {
     const [showCart , setShowCart] = useState(false)
-    
     const cartBtnRef = useRef(null)
     const { cartItems , totalAmount , dispatch } = useCartContext()
       

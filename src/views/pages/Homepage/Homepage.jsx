@@ -2,8 +2,11 @@
 import React from 'react'
 import DefaultLayout from '../../DefaultLayout'
 import Image from 'next/image'
+
 import {SlArrowRight} from 'react-icons/sl'
 import {FaTruckFast} from 'react-icons/fa6'
+import {BiSupport} from 'react-icons/bi'
+import {RiRefund2Fill} from 'react-icons/ri'
 import Link from 'next/link'
 import OneProduct from '../ProductsCatalogue/ProductsList/OneProduct/OneProduct'
 import { urlForImage } from '../../../../sanity/lib/image'
@@ -83,28 +86,28 @@ function Homepage({categories , productsPerCategory , primaryBanner ,secondaryBa
                   <FaTruckFast size={25} color='red' />
               </div>
               <div className='text-center md:text-left'>
-                <h3 className='text-lg font-bold'>Free Delivery</h3>
+                <h3 className='font-bold'>Free Delivery</h3>
                 <p className='text-gray-500 text-sm'>Free shiping on all orders</p>
               </div>
           </div>
 
           <div className='flex flex-col gap-2 items-center md:flex-row'>
               <div className='flex items-center justify-center w-16 h-16 bg-red-200 rounded-full '>
-                  <FaTruckFast size={25} color='red' />
+                <RiRefund2Fill size={25} color='red' />
               </div>
               <div className='text-center md:text-left'>
-                <h3 className='text-lg font-bold'>Free Delivery</h3>
-                <p className='text-gray-500 text-sm'>Free shiping on all orders</p>
+                <h3 className='font-bold'>Money Return</h3>
+                <p className='text-gray-500 text-sm'>money back guarentee under 7 days</p>
               </div>
           </div>
 
           <div className='flex flex-col gap-2 items-center md:flex-row'>
               <div className='flex items-center justify-center w-16 h-16 bg-red-200 rounded-full '>
-                  <FaTruckFast size={25} color='red' />
+                  <BiSupport size={25} color='red'/>
               </div>
               <div className='text-center md:text-left'>
-                <h3 className='text-lg font-bold'>Free Delivery</h3>
-                <p className='text-gray-500 text-sm'>Free shiping on all orders</p>
+                <h3 className='font-bold'>Online Support 24/7</h3>
+                <p className='text-gray-500 text-sm'>support online 24 hours a day</p>
               </div>
           </div>
 
